@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B85F6221C9A4C64002D1DAF /* DZOperateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */; };
+		4B85F6261C9A4C7C002D1DAF /* DZOperateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B85F6251C9A4C7C002D1DAF /* DZOperateController.m */; };
+		4B9337911C9A4B4700E64EBE /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9337901C9A4B4700E64EBE /* AppKit.framework */; };
+		4B9337931C9A4B4700E64EBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9337921C9A4B4700E64EBE /* Foundation.framework */; };
+		4B9337971C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 4B9337961C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme */; };
+		4B93379A1C9A4B4700E64EBE /* RefactorCodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9337991C9A4B4700E64EBE /* RefactorCodePlugin.m */; };
+		4B93379D1C9A4B4700E64EBE /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B93379C1C9A4B4700E64EBE /* NSObject_Extension.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4B85F6201C9A4C50002D1DAF /* RefactorCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RefactorCode-Prefix.pch"; sourceTree = "<group>"; };
+		4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DZOperateController.xib; sourceTree = "<group>"; };
+		4B85F6231C9A4C6D002D1DAF /* DZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZConstants.h; sourceTree = "<group>"; };
+		4B85F6241C9A4C7C002D1DAF /* DZOperateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZOperateController.h; sourceTree = "<group>"; };
+		4B85F6251C9A4C7C002D1DAF /* DZOperateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZOperateController.m; sourceTree = "<group>"; };
+		4B93378D1C9A4B4700E64EBE /* RefactorCodePlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RefactorCodePlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B9337901C9A4B4700E64EBE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		4B9337921C9A4B4700E64EBE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4B9337961C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = RefactorCodePlugin.xcscheme; path = RefactorCodePlugin.xcodeproj/xcshareddata/xcschemes/RefactorCodePlugin.xcscheme; sourceTree = SOURCE_ROOT; };
+		4B9337981C9A4B4700E64EBE /* RefactorCodePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefactorCodePlugin.h; sourceTree = "<group>"; };
+		4B9337991C9A4B4700E64EBE /* RefactorCodePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefactorCodePlugin.m; sourceTree = "<group>"; };
+		4B93379B1C9A4B4700E64EBE /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
+		4B93379C1C9A4B4700E64EBE /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
+		4B93379E1C9A4B4700E64EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B93378B1C9A4B4700E64EBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B9337911C9A4B4700E64EBE /* AppKit.framework in Frameworks */,
+				4B9337931C9A4B4700E64EBE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B9337841C9A4B4700E64EBE = {
+			isa = PBXGroup;
+			children = (
+				4B9337941C9A4B4700E64EBE /* RefactorCodePlugin */,
+				4B93378F1C9A4B4700E64EBE /* Frameworks */,
+				4B93378E1C9A4B4700E64EBE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B93378E1C9A4B4700E64EBE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B93378D1C9A4B4700E64EBE /* RefactorCodePlugin.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B93378F1C9A4B4700E64EBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B9337901C9A4B4700E64EBE /* AppKit.framework */,
+				4B9337921C9A4B4700E64EBE /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B9337941C9A4B4700E64EBE /* RefactorCodePlugin */ = {
+			isa = PBXGroup;
+			children = (
+				4B85F6231C9A4C6D002D1DAF /* DZConstants.h */,
+				4B9337981C9A4B4700E64EBE /* RefactorCodePlugin.h */,
+				4B9337991C9A4B4700E64EBE /* RefactorCodePlugin.m */,
+				4B93379B1C9A4B4700E64EBE /* NSObject_Extension.h */,
+				4B93379C1C9A4B4700E64EBE /* NSObject_Extension.m */,
+				4B85F6241C9A4C7C002D1DAF /* DZOperateController.h */,
+				4B85F6251C9A4C7C002D1DAF /* DZOperateController.m */,
+				4B9337951C9A4B4700E64EBE /* Supporting Files */,
+			);
+			path = RefactorCodePlugin;
+			sourceTree = "<group>";
+		};
+		4B9337951C9A4B4700E64EBE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */,
+				4B85F6201C9A4C50002D1DAF /* RefactorCode-Prefix.pch */,
+				4B93379E1C9A4B4700E64EBE /* Info.plist */,
+				4B9337961C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B93378C1C9A4B4700E64EBE /* RefactorCodePlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B9337A11C9A4B4700E64EBE /* Build configuration list for PBXNativeTarget "RefactorCodePlugin" */;
+			buildPhases = (
+				4B9337891C9A4B4700E64EBE /* Sources */,
+				4B93378A1C9A4B4700E64EBE /* Resources */,
+				4B93378B1C9A4B4700E64EBE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RefactorCodePlugin;
+			productName = RefactorCodePlugin;
+			productReference = 4B93378D1C9A4B4700E64EBE /* RefactorCodePlugin.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B9337851C9A4B4700E64EBE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = chars;
+				TargetAttributes = {
+					4B93378C1C9A4B4700E64EBE = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 4B9337881C9A4B4700E64EBE /* Build configuration list for PBXProject "RefactorCodePlugin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4B9337841C9A4B4700E64EBE;
+			productRefGroup = 4B93378E1C9A4B4700E64EBE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B93378C1C9A4B4700E64EBE /* RefactorCodePlugin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B93378A1C9A4B4700E64EBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B85F6221C9A4C64002D1DAF /* DZOperateController.xib in Resources */,
+				4B9337971C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B9337891C9A4B4700E64EBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B85F6261C9A4C7C002D1DAF /* DZOperateController.m in Sources */,
+				4B93379A1C9A4B4700E64EBE /* RefactorCodePlugin.m in Sources */,
+				4B93379D1C9A4B4700E64EBE /* NSObject_Extension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B93379F1C9A4B4700E64EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		4B9337A01C9A4B4700E64EBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		4B9337A21C9A4B4700E64EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RefactorCodePlugin/RefactorCode-Prefix.pch";
+				INFOPLIST_FILE = RefactorCodePlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zaker.chars.RefactorCodePlugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		4B9337A31C9A4B4700E64EBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RefactorCodePlugin/RefactorCode-Prefix.pch";
+				INFOPLIST_FILE = RefactorCodePlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zaker.chars.RefactorCodePlugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B9337881C9A4B4700E64EBE /* Build configuration list for PBXProject "RefactorCodePlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B93379F1C9A4B4700E64EBE /* Debug */,
+				4B9337A01C9A4B4700E64EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B9337A11C9A4B4700E64EBE /* Build configuration list for PBXNativeTarget "RefactorCodePlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B9337A21C9A4B4700E64EBE /* Debug */,
+				4B9337A31C9A4B4700E64EBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B9337851C9A4B4700E64EBE /* Project object */;
+}

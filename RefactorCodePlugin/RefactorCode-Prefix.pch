@@ -1,0 +1,17 @@
+//
+//  MethodStyleChange-Prefix.pch
+//  MethodStyleChangePlugin
+//
+//  Created by chars on 16/3/16.
+//  Copyright © 2016年 chars. All rights reserved.
+//
+
+#ifndef MethodStyleChange_Prefix_pch
+#define MethodStyleChange_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "DZConstants.h"
+
+#endif /* MethodStyleChange_Prefix_pch */
