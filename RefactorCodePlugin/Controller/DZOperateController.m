@@ -86,26 +86,56 @@
     [[NSUserDefaults standardUserDefaults] setObject:sender.selectedItem.representedObject forKey:DZDefaultsKeyMethodStyle];
 }
 
-#pragma mark Change Button Action
+#pragma mark Find Button Action
 
-- (IBAction)changeButtonAction:(NSPopUpButton *)sender
+- (IBAction)findButtonAction:(NSButton *)sender
+{
+    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:DZDefaultsKeyMethodStyle];
+    NSString *pattern = [[NSString alloc] init];
+    
+    if ([selectedStyle isEqualToString:@"Setter"]) {
+        pattern = DZSetterMethodPattern;
+    }else if ([selectedStyle isEqualToString:@"NSArray"]) {
+        pattern = DZNSArrayMethodPattern;
+    }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
+        pattern = DZNSDictionaryMethodPattern;
+    }else {
+        DZLog(@"findButtonAction Error!");
+    }
+    
+    if ([_delegate respondsToSelector:@selector(findSpecifyStringWithPattern:)]) {
+        [_delegate findSpecifyStringWithPattern:pattern];
+    }
+    DZLog(@"pattern : %@", pattern);
+}
+
+#pragma mark Apply Button Action
+
+- (IBAction)applyButtonAction:(NSButton *)sender
 {
     NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:DZDefaultsKeyMethodStyle];
     if ([selectedStyle isEqualToString:@"Setter"]) {
-        //使用通知还是代理实现？根据两者特性以及现在的代码结构，选择使用代理实现。
-        NSLog(@"Style is Setter");
+        if ([_delegate respondsToSelector:@selector(operateSetterStyleAction)]) {
+            [_delegate operateSetterStyleAction];
+        }
+        DZLog(@"Style is Setter");
     }else if ([selectedStyle isEqualToString:@"NSArray"]) {
-        NSLog(@"Style is NSArray");
+        if ([_delegate respondsToSelector:@selector(operateNSArrayStyleAction)]) {
+            [_delegate operateNSArrayStyleAction];
+        }
+        DZLog(@"Style is NSArray");
     }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
-        NSLog(@"Style is NSDictionary");
+        if ([_delegate respondsToSelector:@selector(operateNSDictionaryStyleAction)]) {
+            [_delegate operateNSDictionaryStyleAction];
+        }
+        DZLog(@"Style is NSDictionary");
     }else {
-        NSLog(@"changeButtonAction Error!");
+        DZLog(@"changeButtonAction Error!");
     }
 }
 
-#pragma mark Find Next Button Action
-
-- (IBAction)findNextButtonAction:(NSPopUpButton *)sender
+#pragma mark Next Button Action
+- (IBAction)nextButtonAction:(NSButton *)sender
 {
 }
 

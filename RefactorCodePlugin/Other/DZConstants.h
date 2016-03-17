@@ -12,7 +12,9 @@
 #define DZDefaultsKeyMethodStyle @"DZMethodStyle"
 
 #define DZCurrentFilePathChangeNotification @"transition from one file to another"
-#define DZSetterMethodPattern @"[0-9]"
+#define DZSetterMethodPattern @"self ([a-zA-Z])*set[A-Z]([a-zA-Z])*:(@)*(\")*([a-zA-Z])*(\")*"
+#define DZNSArrayMethodPattern @"NS(Mutable){0,1}(Array) arrayWithObject(s){0,1}:"
+#define DZNSDictionaryMethodPattern @"NS(Mutable){0,1}(Dictionary) dictionaryWithObject(s){0,1}:"
 
 
 #endif /* DZConstants_h */

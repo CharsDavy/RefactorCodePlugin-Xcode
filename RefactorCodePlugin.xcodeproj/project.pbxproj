@@ -8,28 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		4B85F6221C9A4C64002D1DAF /* DZOperateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */; };
-		4B85F6261C9A4C7C002D1DAF /* DZOperateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B85F6251C9A4C7C002D1DAF /* DZOperateController.m */; };
+		4B8D658C1C9A7D6A0006361A /* DZOperateCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D658B1C9A7D6A0006361A /* DZOperateCharacter.m */; };
+		4B8D65971C9A7DF20006361A /* DZOperateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D658F1C9A7DF20006361A /* DZOperateController.m */; };
+		4B8D65981C9A7DF20006361A /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D65921C9A7DF20006361A /* NSObject_Extension.m */; };
+		4B8D65991C9A7DF20006361A /* RefactorCodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D65941C9A7DF20006361A /* RefactorCodePlugin.m */; };
 		4B9337911C9A4B4700E64EBE /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9337901C9A4B4700E64EBE /* AppKit.framework */; };
 		4B9337931C9A4B4700E64EBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9337921C9A4B4700E64EBE /* Foundation.framework */; };
 		4B9337971C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 4B9337961C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme */; };
-		4B93379A1C9A4B4700E64EBE /* RefactorCodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9337991C9A4B4700E64EBE /* RefactorCodePlugin.m */; };
-		4B93379D1C9A4B4700E64EBE /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B93379C1C9A4B4700E64EBE /* NSObject_Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B85F6201C9A4C50002D1DAF /* RefactorCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RefactorCode-Prefix.pch"; sourceTree = "<group>"; };
 		4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DZOperateController.xib; sourceTree = "<group>"; };
-		4B85F6231C9A4C6D002D1DAF /* DZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZConstants.h; sourceTree = "<group>"; };
-		4B85F6241C9A4C7C002D1DAF /* DZOperateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZOperateController.h; sourceTree = "<group>"; };
-		4B85F6251C9A4C7C002D1DAF /* DZOperateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZOperateController.m; sourceTree = "<group>"; };
+		4B8D658A1C9A7D6A0006361A /* DZOperateCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZOperateCharacter.h; sourceTree = "<group>"; };
+		4B8D658B1C9A7D6A0006361A /* DZOperateCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZOperateCharacter.m; sourceTree = "<group>"; };
+		4B8D658E1C9A7DF20006361A /* DZOperateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZOperateController.h; sourceTree = "<group>"; };
+		4B8D658F1C9A7DF20006361A /* DZOperateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZOperateController.m; sourceTree = "<group>"; };
+		4B8D65911C9A7DF20006361A /* NSObject_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
+		4B8D65921C9A7DF20006361A /* NSObject_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
+		4B8D65931C9A7DF20006361A /* RefactorCodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefactorCodePlugin.h; sourceTree = "<group>"; };
+		4B8D65941C9A7DF20006361A /* RefactorCodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefactorCodePlugin.m; sourceTree = "<group>"; };
+		4B8D65961C9A7DF20006361A /* DZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZConstants.h; sourceTree = "<group>"; };
+		4B8D659A1C9A89F10006361A /* DZConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZConfig.h; sourceTree = "<group>"; };
 		4B93378D1C9A4B4700E64EBE /* RefactorCodePlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RefactorCodePlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9337901C9A4B4700E64EBE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		4B9337921C9A4B4700E64EBE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4B9337961C9A4B4700E64EBE /* RefactorCodePlugin.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = RefactorCodePlugin.xcscheme; path = RefactorCodePlugin.xcodeproj/xcshareddata/xcschemes/RefactorCodePlugin.xcscheme; sourceTree = SOURCE_ROOT; };
-		4B9337981C9A4B4700E64EBE /* RefactorCodePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefactorCodePlugin.h; sourceTree = "<group>"; };
-		4B9337991C9A4B4700E64EBE /* RefactorCodePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefactorCodePlugin.m; sourceTree = "<group>"; };
-		4B93379B1C9A4B4700E64EBE /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
-		4B93379C1C9A4B4700E64EBE /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
 		4B93379E1C9A4B4700E64EBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +50,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B8D65891C9A7D6A0006361A /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				4B8D658A1C9A7D6A0006361A /* DZOperateCharacter.h */,
+				4B8D658B1C9A7D6A0006361A /* DZOperateCharacter.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		4B8D658D1C9A7DF20006361A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4B8D658E1C9A7DF20006361A /* DZOperateController.h */,
+				4B8D658F1C9A7DF20006361A /* DZOperateController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4B8D65901C9A7DF20006361A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4B8D65911C9A7DF20006361A /* NSObject_Extension.h */,
+				4B8D65921C9A7DF20006361A /* NSObject_Extension.m */,
+				4B8D65931C9A7DF20006361A /* RefactorCodePlugin.h */,
+				4B8D65941C9A7DF20006361A /* RefactorCodePlugin.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4B8D65951C9A7DF20006361A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				4B8D65961C9A7DF20006361A /* DZConstants.h */,
+				4B8D659A1C9A89F10006361A /* DZConfig.h */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		4B9337841C9A4B4700E64EBE = {
 			isa = PBXGroup;
 			children = (
@@ -75,13 +117,10 @@
 		4B9337941C9A4B4700E64EBE /* RefactorCodePlugin */ = {
 			isa = PBXGroup;
 			children = (
-				4B85F6231C9A4C6D002D1DAF /* DZConstants.h */,
-				4B9337981C9A4B4700E64EBE /* RefactorCodePlugin.h */,
-				4B9337991C9A4B4700E64EBE /* RefactorCodePlugin.m */,
-				4B93379B1C9A4B4700E64EBE /* NSObject_Extension.h */,
-				4B93379C1C9A4B4700E64EBE /* NSObject_Extension.m */,
-				4B85F6241C9A4C7C002D1DAF /* DZOperateController.h */,
-				4B85F6251C9A4C7C002D1DAF /* DZOperateController.m */,
+				4B8D65891C9A7D6A0006361A /* Tool */,
+				4B8D658D1C9A7DF20006361A /* Controller */,
+				4B8D65901C9A7DF20006361A /* Core */,
+				4B8D65951C9A7DF20006361A /* Other */,
 				4B9337951C9A4B4700E64EBE /* Supporting Files */,
 			);
 			path = RefactorCodePlugin;
@@ -166,9 +205,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B85F6261C9A4C7C002D1DAF /* DZOperateController.m in Sources */,
-				4B93379A1C9A4B4700E64EBE /* RefactorCodePlugin.m in Sources */,
-				4B93379D1C9A4B4700E64EBE /* NSObject_Extension.m in Sources */,
+				4B8D65971C9A7DF20006361A /* DZOperateController.m in Sources */,
+				4B8D65981C9A7DF20006361A /* NSObject_Extension.m in Sources */,
+				4B8D65991C9A7DF20006361A /* RefactorCodePlugin.m in Sources */,
+				4B8D658C1C9A7D6A0006361A /* DZOperateCharacter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
