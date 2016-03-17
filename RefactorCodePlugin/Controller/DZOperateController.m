@@ -94,17 +94,17 @@
     NSString *pattern = [[NSString alloc] init];
     
     if ([selectedStyle isEqualToString:@"Setter"]) {
-        pattern = DZSetterMethodPattern;
+        pattern = DZSetterMethodRegexPattern;
     }else if ([selectedStyle isEqualToString:@"NSArray"]) {
-        pattern = DZNSArrayMethodPattern;
+        pattern = DZNSArrayMethodRegexPattern;
     }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
-        pattern = DZNSDictionaryMethodPattern;
+        pattern = DZNSDictionaryMethodRegexPattern;
     }else {
         DZLog(@"findButtonAction Error!");
     }
     
-    if ([_delegate respondsToSelector:@selector(findSpecifyStringWithPattern:)]) {
-        [_delegate findSpecifyStringWithPattern:pattern];
+    if ([_delegate respondsToSelector:@selector(findAllSpecifyStringWithPattern:)]) {
+        [_delegate findAllSpecifyStringWithPattern:pattern];
     }
     DZLog(@"pattern : %@", pattern);
 }
@@ -137,6 +137,23 @@
 #pragma mark Next Button Action
 - (IBAction)nextButtonAction:(NSButton *)sender
 {
+    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:DZDefaultsKeyMethodStyle];
+    NSString *pattern = [[NSString alloc] init];
+    
+    if ([selectedStyle isEqualToString:@"Setter"]) {
+        pattern = DZSetterMethodRegexPattern;
+    }else if ([selectedStyle isEqualToString:@"NSArray"]) {
+        pattern = DZNSArrayMethodRegexPattern;
+    }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
+        pattern = DZNSDictionaryMethodRegexPattern;
+    }else {
+        DZLog(@"findButtonAction Error!");
+    }
+    
+    if ([_delegate respondsToSelector:@selector(findSpecifyStringWithPattern:)]) {
+        [_delegate findSpecifyStringWithPattern:pattern];
+    }
+    DZLog(@"pattern : %@", pattern);
 }
 
 @end

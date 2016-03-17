@@ -10,6 +10,8 @@
 
 @interface DZOperateCharacter : NSObject
 
-+ (NSArray *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
++ (NSArray *)findAllSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
+
++ (NSString *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
 
 @end

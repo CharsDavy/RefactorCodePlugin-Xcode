@@ -154,16 +154,25 @@
     DZLog(@"operateNSDictionaryStyleAction in plugin");
 }
 
-- (void)findSpecifyStringWithPattern:(NSString *)pattern
+- (void)findAllSpecifyStringWithPattern:(NSString *)pattern
 {
     NSString *select = self.operateController.selectedTextField.stringValue;
-    NSArray *array = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
+    NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.url pattern:pattern];
     NSMutableString *preview = [NSMutableString string];
     for (NSString *findStr in array) {
         [preview appendFormat:@"\n%@", findStr];
     }
 
     [self updatePreviewContentWithString:preview];
+    DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
+}
+
+- (void)findSpecifyStringWithPattern:(NSString *)pattern
+{
+    NSString *select = self.operateController.selectedTextField.stringValue;
+    NSString *findStr = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
+    
+    [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", findStr]];
     DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
 }
 

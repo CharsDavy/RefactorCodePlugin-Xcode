@@ -14,6 +14,7 @@
 - (void) operateNSArrayStyleAction;
 - (void) operateNSDictionaryStyleAction;
 - (void) findSpecifyStringWithPattern:(NSString *)pattern;
+- (void) findAllSpecifyStringWithPattern:(NSString *)pattern;
 
 @end
 
