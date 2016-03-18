@@ -21,7 +21,7 @@ NSUInteger currentIdx = 0;
     NSMutableArray *arrayM = [NSMutableArray array];
     NSError *error = nil;
     //According to the regular expression，set up Objective-C rules
-    NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
     if (error) {
         DZLog(@"regular error:%@",error);
     }
@@ -51,7 +51,7 @@ NSUInteger currentIdx = 0;
     
     NSError *error = nil;
     //According to the regular expression，set up Objective-C rules
-    NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
     if (error) {
         DZLog(@"regular error:%@",error);
     }
@@ -77,6 +77,11 @@ NSUInteger currentIdx = 0;
     DZLog(@"%@ %@", NSStringFromRange(result.range), [fileContent substringWithRange:result.range]);
     
     return [fileContent substringWithRange:result.range];
+}
+
++ (void)zeroCurrentIdx
+{
+    currentIdx = 0;
 }
 
 @end

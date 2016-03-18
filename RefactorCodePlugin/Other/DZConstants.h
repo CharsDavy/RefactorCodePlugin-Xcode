@@ -13,13 +13,13 @@
 
 #define DZCurrentFilePathChangeNotification @"transition from one file to another"
 
-#define DZSetterMethodRegexPattern @"\\[self\\s+set([A-Z])([a-zA-Z])*(:)(@\"){0,1}.+(\"){0,1}(\\];)"
-#define DZNSArrayMethodRegexPattern @"\\[NS(Mutable){0,1}(Array) arrayWithObject(s){0,1}:.+(\\];)"
-#define DZNSDictionaryMethodRegexPattern @"\\[NS(Mutable){0,1}(Dictionary) dictionaryWithObject(s){0,1}:.+(\\];)"
+#define DZSetterMethodRegexPattern @"(.+)(?<=set)\\w+(.+)"
+#define DZNSArrayMethodRegexPattern @"(.+)(?<=array)\\w+(.+)"
+#define DZNSDictionaryMethodRegexPattern @"(.+)(?<=dictionary)\\w+(.+)"
 
 /**
  *  Ruby Regular
- Setter:(\[\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(\@".+))(\];))|(\[+\w+[\.]*\w*\s*\w+\]\s*\w*(set)*\]*(:)*\s*\w*(set)*(:){0,1}\s*\w*\];)
+ Setter:(\[\s*\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(.+))(\s*\];))|((\[\s*)+\w+[\.]*\w*\s*\w+\s*\]\s*\w*(set)*\s*\]*(:)*\s*\w*(set)*(:){0,1}\s*\w*\s*\];)
  Test string:
  [self.url setUrl:@"/Users/chars/test.m"];
  [[test.a find] setBB:partten];
@@ -29,6 +29,7 @@
  [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
  [self setEnable:YES];
  [self setEXXXXXnable:NO];
+ [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
  
  NSArray:
  NSDictionary:

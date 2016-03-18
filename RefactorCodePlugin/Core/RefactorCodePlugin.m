@@ -187,9 +187,14 @@
 
 - (void)test
 {
+    //[  [self.dsadas dsds] setSSSS : dsads    ];
+    [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
+    [NSString stringWithFormat:@"%@", @"ssssss"];
     [self setUrl:@"/Users/chars/Xcode_code/RefactorCodePlugin/RefactorCodePlugin/Core/RefactorCodePlugin.m"];
     [self setFlag:YES];
     NSArray *array = [NSArray arrayWithObjects:@"1", @"2", @"3", nil];
+    array = [NSArray arrayWithContentsOfFile:@"xxxxx"];
+    array = [NSArray arrayWithContentsOfURL:@"sdxcfd"];
     NSDictionary *dict = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
     NSDictionary *dict1 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
     NSDictionary *dict2 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];

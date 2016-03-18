@@ -7,6 +7,7 @@
 //
 
 #import "DZOperateController.h"
+#import "DZOperateCharacter.h"
 
 @interface DZOperateController ()
 @property (weak) IBOutlet NSPopUpButton *methodStylePopUpButton;
@@ -84,6 +85,7 @@
 - (IBAction)selectedMethodStyleAction:(NSPopUpButton *)sender
 {
     [[NSUserDefaults standardUserDefaults] setObject:sender.selectedItem.representedObject forKey:DZDefaultsKeyMethodStyle];
+    [DZOperateCharacter zeroCurrentIdx];
 }
 
 #pragma mark Find Button Action
