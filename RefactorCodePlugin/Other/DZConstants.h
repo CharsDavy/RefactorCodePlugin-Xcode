@@ -19,7 +19,7 @@
 
 /**
  *  Ruby Regular
- Setter:(\[\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(\@".+))(\];))
+ Setter:(\[\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(\@".+))(\];))|(\[+\w+[\.]*\w*\s*\w+\]\s*\w*(set)*\]*(:)*\s*\w*(set)*(:){0,1}\s*\w*\];)
  Test string:
  [self.url setUrl:@"/Users/chars/test.m"];
  [[test.a find] setBB:partten];
