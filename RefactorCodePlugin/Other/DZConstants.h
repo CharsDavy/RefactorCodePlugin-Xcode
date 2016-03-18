@@ -17,5 +17,21 @@
 #define DZNSArrayMethodRegexPattern @"\\[NS(Mutable){0,1}(Array) arrayWithObject(s){0,1}:.+(\\];)"
 #define DZNSDictionaryMethodRegexPattern @"\\[NS(Mutable){0,1}(Dictionary) dictionaryWithObject(s){0,1}:.+(\\];)"
 
+/**
+ *  Ruby Regular
+ Setter:(\[\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(\@".+))(\];))
+ Test string:
+ [self.url setUrl:@"/Users/chars/test.m"];
+ [[test.a find] setBB:partten];
+ [[test.b finds] XXXsetBB:partten];
+ [[[test.c findx] XXXsFFF] setXXXX:abc];
+ [[[test.d findw] setSSSS] setXXXX:abce];
+ [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
+ [self setEnable:YES];
+ [self setEXXXXXnable:NO];
+ 
+ NSArray:
+ NSDictionary:
+ */
 
 #endif /* DZConstants_h */
