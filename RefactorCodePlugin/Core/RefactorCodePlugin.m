@@ -162,8 +162,12 @@
     for (NSString *findStr in array) {
         [preview appendFormat:@"\n%@", findStr];
     }
-
-    [self updatePreviewContentWithString:preview];
+    
+    if (preview) {
+        [self updatePreviewContentWithString:preview];
+    }else {
+        [self updatePreviewContentWithString:@"Finished"];
+    }
     DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
 }
 
@@ -171,8 +175,11 @@
 {
     NSString *select = self.operateController.selectedTextField.stringValue;
     NSString *findStr = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
-    
-    [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", findStr]];
+    if (findStr) {
+        [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", findStr]];
+    }else {
+        [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
+    }
     DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
 }
 
