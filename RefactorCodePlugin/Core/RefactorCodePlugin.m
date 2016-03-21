@@ -9,13 +9,27 @@
 #import "RefactorCodePlugin.h"
 #import "DZOperateController.h"
 #import "DZOperateCharacter.h"
+#import <objc/runtime.h>
+#import "DZResults.h"
+
+static const char hilightStateKey;
+
+NSString *DZCurrentFilePathChangeNotification = @"transition from one file to another";
 
 @interface RefactorCodePlugin()<DZOperateDelegate>
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
-@property (nonatomic, readonly)DZOperateController *operateController;
-@property (nonatomic, copy)NSString *url;
-@property (nonatomic, assign)BOOL flag;
+@property (nonatomic, readonly) DZOperateController *operateController;
+
+@property (nonatomic, strong) NSColor *highlightColor;
+@property (nonatomic, unsafe_unretained) NSTextView *sourceTextView;
+@property (nonatomic, copy) NSString *selectedText;
+@property (nonatomic, readonly) NSString *string;
+@property (nonatomic, assign) NSRange selectedRange;
+
+@property (nonatomic, copy) NSString *url;
+
+@property (nonatomic, assign) BOOL flag;
 
 @end
 
@@ -35,11 +49,7 @@
     if (self = [super init]) {
         // reference to plugin's bundle, for resource access
         self.bundle = plugin;
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didApplicationFinishLaunchingNotification:)
-                                                     name:NSApplicationDidFinishLaunchingNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationObtain:) name:nil object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didApplicationFinishLaunchingNotification:)name:NSApplicationDidFinishLaunchingNotification object:nil];
     }
     return self;
 }
@@ -55,12 +65,75 @@
 
 #pragma mark - Notification
 
-- (void)didApplicationFinishLaunchingNotification:(NSNotification*)noti
+- (void)didApplicationFinishLaunchingNotification:(NSNotification *)notify
 {
     //removeObserver
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
+    // addObserver
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePathObtain:) name:DZCurrentFilePathChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
+    
     // Create menu items, initialize UI, etc.
+    // Init Config
+    [self initConfig];
+    // Menu Item:
+    [self setupMenuItem];
+    
+}
+
+- (void)filePathObtain:(NSNotification *)notify
+{
+    //Get the file path
+    NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
+    if (originURL != nil && [originURL absoluteString].length >= 7 ) {
+        self.url = [originURL.absoluteString substringFromIndex:7];
+        NSLog(@"url is : %@", self.url);
+    }
+}
+
+-(void)selectionDidChange:(NSNotification *)notify {
+    
+    self.sourceTextView =  [notify object];
+    
+    if ([[notify object] isKindOfClass:[NSTextView class]]) {
+        NSTextView *textView = [notify object];
+        NSString *className = NSStringFromClass([textView class]);
+        
+        /**
+         *  DVTSourceTextView ： 代码编辑器
+         *  IDEConsoleTextView ： 控制台
+         */
+        if ([className isEqualToString:@"DVTSourceTextView"]) {
+            if (self.sourceTextView != textView) {
+                self.sourceTextView = textView;
+            }
+            
+            //延迟0.1秒执行高亮
+            [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(todoHighlighting) object:nil];
+            [self performSelector:@selector(todoHighlighting) withObject:nil afterDelay:0.1f];
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Actions
+
+#pragma mark Init Config
+
+-(void) initConfig
+{
+    _highlightColor = [NSColor colorWithCalibratedRed:1.000 green:0.992 blue:0.518 alpha:1.000];
+}
+
+#pragma mark Build Menu
+
+-(void) setupMenuItem
+{
     // Menu Item:
     
     NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
@@ -80,26 +153,6 @@
         [[editMenuItem submenu] addItem:refactorCodeMenuItem];
     }
 }
-
-- (void)notificationObtain:(NSNotification *)notify
-{
-    //NSLog(@"notify:%@",notify.name);
-    //Get the file path
-    if ([notify.name isEqualToString:DZCurrentFilePathChangeNotification]) {
-        NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
-        if (originURL != nil && [originURL absoluteString].length >= 7 ) {
-            self.url = [originURL.absoluteString substringFromIndex:7];
-            NSLog(@"url is : %@", self.url);
-        }
-    }
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Actions
 
 #pragma mark Show Operate Window
 
@@ -134,6 +187,120 @@
     [mutableAttrString appendAttributedString:appendAttrString];
     [self.operateController.preview.textStorage setAttributedString:mutableAttrString];
     [self.operateController.preview.textStorage endEditing];
+}
+
+#pragma mark todoHighlight
+
+- (void)todoHighlighting
+{
+    [self highlightSelectedStrings];
+}
+
+- (NSString *)selectedText
+{
+    NSTextView *textView = self.sourceTextView;
+    NSRange selectedRange = [textView selectedRange];
+    DZLog(@"selectedRange : %@", NSStringFromRange(selectedRange));
+    NSString *text = textView.textStorage.string;
+    DZLog(@"text : %@", text);
+    NSString *nSelectedStr = nil;
+    if (_selectedRange.length > 0) {
+        text = [NSString stringWithContentsOfFile:self.url encoding:NSUTF8StringEncoding error:nil];
+        nSelectedStr = [[text substringWithRange:_selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+    }else {
+        nSelectedStr = [[text substringWithRange:selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+    }
+    
+    //如果新选中的长度为0 就返回空
+    if (!nSelectedStr.length) {
+        return @"";
+    }
+    
+    _selectedText = nSelectedStr;
+    
+    return _selectedText;
+}
+
+#pragma mark Highlighting
+
+- (void)highlightSelectedStrings
+{
+    //每次高亮 都撤销之前高亮
+    [self removeAllHighlighting];
+    
+    NSArray *array = [self rangesOfString:self.selectedText];
+    
+    [self addBackgroundColorWithRangeArray:array];
+}
+
+- (void)addBackgroundColorWithRangeArray:(NSArray*)rangeArray
+{
+    NSTextView *textView = self.sourceTextView;
+    
+    [rangeArray enumerateObjectsUsingBlock:^(NSValue *value, NSUInteger idx, BOOL *stop) {
+        NSRange range = [value rangeValue];
+        [textView.layoutManager addTemporaryAttribute:NSBackgroundColorAttributeName value:_highlightColor forCharacterRange:range];
+    }];
+    
+    [textView setNeedsDisplay:YES];
+    if (textView) {
+        objc_setAssociatedObject(textView, &hilightStateKey, @"1", OBJC_ASSOCIATION_COPY);
+    }
+}
+
+- (NSMutableArray *)rangesOfString:(NSString *)string
+{
+    if (string.length == 0) {
+        return nil;
+    }
+    
+    NSUInteger length = [self.string length];
+    
+    NSRange searchRange = NSMakeRange(0, length);
+    NSRange foundRange = NSMakeRange(0, 0);
+    
+    NSMutableArray *rangArray = [NSMutableArray array];
+    
+    while (YES) {
+        foundRange = [self.string rangeOfString:string options:0 range:searchRange];
+        NSUInteger searchRangeStart = foundRange.location + foundRange.length;
+        searchRange = NSMakeRange(searchRangeStart, length - searchRangeStart);
+        
+        if (foundRange.location != NSNotFound) {
+            [rangArray addObject:[NSValue valueWithRange:foundRange]];
+        } else {
+            break;
+        }
+    }
+    return rangArray;
+}
+
+- (void)removeAllHighlighting
+{
+    NSUInteger length = [[self.textStorage string] length];
+    NSTextView *textView = self.sourceTextView;
+    
+    NSString *hilightState = objc_getAssociatedObject(textView, &hilightStateKey);
+    if (![hilightState boolValue]) {
+        return;
+    }
+    
+    NSRange range = NSMakeRange(0, 0);
+    for (int i = 0; i < length;) {
+        NSDictionary *dict = [textView.layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:&range];
+        id obj = dict[NSBackgroundColorAttributeName];
+        if (obj && [_highlightColor isEqual:obj]) {
+            
+            [textView.layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:range];
+        }
+        i += range.length;
+    }
+    
+    [textView setNeedsDisplay:YES];
+    
+    if (textView) {
+        objc_setAssociatedObject(textView, &hilightStateKey, @"0", OBJC_ASSOCIATION_RETAIN);
+    }
 }
 
 #pragma mark - DZOperateDelegate
@@ -174,13 +341,27 @@
 - (void)findSpecifyStringWithPattern:(NSString *)pattern
 {
     NSString *select = self.operateController.selectedTextField.stringValue;
-    NSString *findStr = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
-    if (findStr) {
-        [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", findStr]];
+    DZResults *find = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
+    if (find) {
+        [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", find.resultString]];
+        _selectedRange = find.resultRange;
+        DZLog(@"_selectedRange : %@", NSStringFromRange(_selectedRange));
     }else {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
     }
     DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
+    [self todoHighlighting];
+}
+
+#pragma mark - Accessor Overrides
+- (NSTextStorage *)textStorage
+{
+    return [self.sourceTextView textStorage];
+}
+
+- (NSString *)string
+{
+    return [self.textStorage string];
 }
 
 #pragma mark - Test

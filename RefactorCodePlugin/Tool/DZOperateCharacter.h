@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class DZResults;
 @interface DZOperateCharacter : NSObject
 
 + (NSArray *)findAllSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
 
-+ (NSString *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
++ (DZResults *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
 
 + (void)zeroCurrentIdx;
 

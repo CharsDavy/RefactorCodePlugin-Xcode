@@ -7,6 +7,7 @@
 //
 
 #import "DZOperateCharacter.h"
+#import "DZResults.h"
 
 NSUInteger currentIdx = 0;
 
@@ -43,12 +44,12 @@ NSUInteger currentIdx = 0;
     return (NSArray *)arrayM;
 }
 
-+ (NSString *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern
++ (DZResults *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern
 {
     if (!filePath) {
         return NULL;
     }
-    
+    DZResults *ret = [[DZResults alloc] init];
     NSError *error = nil;
     //According to the regular expression，set up Objective-C rules
     NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
@@ -75,8 +76,10 @@ NSUInteger currentIdx = 0;
     currentIdx = result.range.location + result.range.length;
     
     DZLog(@"%@ %@", NSStringFromRange(result.range), [fileContent substringWithRange:result.range]);
+    ret.resultString = [fileContent substringWithRange:result.range];
+    ret.resultRange = result.range;
     
-    return [fileContent substringWithRange:result.range];
+    return ret;
 }
 
 + (void)zeroCurrentIdx

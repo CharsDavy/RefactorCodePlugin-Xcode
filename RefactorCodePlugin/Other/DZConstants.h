@@ -11,9 +11,7 @@
 
 #define DZDefaultsKeyMethodStyle @"DZMethodStyle"
 
-#define DZCurrentFilePathChangeNotification @"transition from one file to another"
-
-#define DZSetterMethodRegexPattern @"(.+)(?<=set)\\w+(.+)"
+#define DZSetterMethodRegexPattern @"(\\[)(.+)(?<=set)[A-Z]\\w+(.+)(\\];)"
 #define DZNSArrayMethodRegexPattern @"(.+)(?<=array)\\w+(.+)"
 #define DZNSDictionaryMethodRegexPattern @"(.+)(?<=dictionary)\\w+(.+)"
 

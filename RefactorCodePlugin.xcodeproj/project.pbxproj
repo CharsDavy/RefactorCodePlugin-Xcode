@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B85F6221C9A4C64002D1DAF /* DZOperateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */; };
+		4B875C841C9FA34B003A35E6 /* DZResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B875C831C9FA34B003A35E6 /* DZResults.m */; };
 		4B8D658C1C9A7D6A0006361A /* DZOperateCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D658B1C9A7D6A0006361A /* DZOperateCharacter.m */; };
 		4B8D65971C9A7DF20006361A /* DZOperateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D658F1C9A7DF20006361A /* DZOperateController.m */; };
 		4B8D65981C9A7DF20006361A /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D65921C9A7DF20006361A /* NSObject_Extension.m */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		4B85F6201C9A4C50002D1DAF /* RefactorCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RefactorCode-Prefix.pch"; sourceTree = "<group>"; };
 		4B85F6211C9A4C64002D1DAF /* DZOperateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DZOperateController.xib; sourceTree = "<group>"; };
+		4B875C821C9FA34B003A35E6 /* DZResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZResults.h; sourceTree = "<group>"; };
+		4B875C831C9FA34B003A35E6 /* DZResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZResults.m; sourceTree = "<group>"; };
 		4B8D658A1C9A7D6A0006361A /* DZOperateCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZOperateCharacter.h; sourceTree = "<group>"; };
 		4B8D658B1C9A7D6A0006361A /* DZOperateCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZOperateCharacter.m; sourceTree = "<group>"; };
 		4B8D658E1C9A7DF20006361A /* DZOperateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZOperateController.h; sourceTree = "<group>"; };
@@ -50,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B875C811C9FA330003A35E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B875C821C9FA34B003A35E6 /* DZResults.h */,
+				4B875C831C9FA34B003A35E6 /* DZResults.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4B8D65891C9A7D6A0006361A /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +129,7 @@
 		4B9337941C9A4B4700E64EBE /* RefactorCodePlugin */ = {
 			isa = PBXGroup;
 			children = (
+				4B875C811C9FA330003A35E6 /* Model */,
 				4B8D65891C9A7D6A0006361A /* Tool */,
 				4B8D658D1C9A7DF20006361A /* Controller */,
 				4B8D65901C9A7DF20006361A /* Core */,
@@ -207,6 +220,7 @@
 			files = (
 				4B8D65971C9A7DF20006361A /* DZOperateController.m in Sources */,
 				4B8D65981C9A7DF20006361A /* NSObject_Extension.m in Sources */,
+				4B875C841C9FA34B003A35E6 /* DZResults.m in Sources */,
 				4B8D65991C9A7DF20006361A /* RefactorCodePlugin.m in Sources */,
 				4B8D658C1C9A7D6A0006361A /* DZOperateCharacter.m in Sources */,
 			);
