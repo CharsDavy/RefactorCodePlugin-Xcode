@@ -11,9 +11,9 @@
 @class DZResults;
 @interface DZOperateCharacter : NSObject
 
-+ (NSArray *)findAllSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
++ (NSArray *)findAllSpecityStringWithContent:(NSString *)content pattern:(NSString *)pattern;
 
-+ (DZResults *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern;
++ (DZResults *)findSpecityStringWithContent:(NSString *)content pattern:(NSString *)pattern;
 
 + (void)zeroCurrentIdx;
 

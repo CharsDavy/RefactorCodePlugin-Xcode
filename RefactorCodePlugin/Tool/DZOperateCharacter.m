@@ -47,9 +47,38 @@ NSUInteger currentIdx = 0;
     return (NSArray *)arrayM;
 }
 
-+ (DZResults *)findSpecityContentWithFilePath:(NSString *)filePath pattern:(NSString *)pattern
++ (NSArray *)findAllSpecityStringWithContent:(NSString *)content pattern:(NSString *)pattern
 {
-    if (!filePath) {
+    if (!content) {
+        return NULL;
+    }
+    
+    NSMutableArray *arrayM = [NSMutableArray array];
+    NSError *error = nil;
+    //According to the regular expression，set up Objective-C rules
+    NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
+    if (error) {
+        DZLog(@"regular error:%@",error);
+    }
+    
+    //Test for regular
+    NSArray *results = [regular matchesInString:content options:0 range:NSMakeRange(0, content.length)];
+    DZLog(@"result:%zi", results.count);
+    
+    for (NSTextCheckingResult *result in results) {
+        DZLog(@"%@ %@", NSStringFromRange(result.range), [content substringWithRange:result.range]);
+        DZResults *ret = [[DZResults alloc] init];
+        ret.resultString = [content substringWithRange:result.range];
+        ret.resultRange = result.range;
+        [arrayM addObject: ret];
+    }
+    
+    return (NSArray *)arrayM;
+}
+
++ (DZResults *)findSpecityStringWithContent:(NSString *)content pattern:(NSString *)pattern
+{
+    if (!content) {
         return NULL;
     }
     DZResults *ret = [[DZResults alloc] init];
@@ -60,17 +89,12 @@ NSUInteger currentIdx = 0;
         DZLog(@"regular error:%@",error);
     }
     
-    NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-    if (error) {
-        DZLog(@"file content error:%@",error);
-    }
-    
-    if (currentIdx > fileContent.length) {
+    if (currentIdx > content.length) {
         return NULL;
     }
     
-    NSTextCheckingResult *result = [regular firstMatchInString:fileContent options:0 range:NSMakeRange(currentIdx, fileContent.length - currentIdx)];
-    DZLog(@"%zi", fileContent.length);
+    NSTextCheckingResult *result = [regular firstMatchInString:content options:0 range:NSMakeRange(currentIdx, content.length - currentIdx)];
+    DZLog(@"%zi", content.length);
     if (!result) {
         DZLog(@"findSpecityContentWithFilePath Error!");
         return NULL;
@@ -78,8 +102,8 @@ NSUInteger currentIdx = 0;
     
     currentIdx = result.range.location + result.range.length;
     
-    DZLog(@"%@ %@", NSStringFromRange(result.range), [fileContent substringWithRange:result.range]);
-    ret.resultString = [fileContent substringWithRange:result.range];
+    DZLog(@"%@ %@", NSStringFromRange(result.range), [content substringWithRange:result.range]);
+    ret.resultString = [content substringWithRange:result.range];
     ret.resultRange = result.range;
     
     return ret;

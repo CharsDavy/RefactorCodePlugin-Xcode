@@ -319,7 +319,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 - (void)operateSetterStyleAction
 {
     NSMutableString *origin = [[NSMutableString alloc] initWithString:self.string];
-    NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:@"[menuItem setTarget:test];"];
+    NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:@"[menuItem setTarget:testtest];"];
     [self replaceSourceTextViewContentWithString:replace];
     DZLog(@"operateSetterStyleAction in plugin");
 }
@@ -336,7 +336,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)findAllSpecifyStringWithPattern:(NSString *)pattern
 {
-    NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.filePath pattern:pattern];
+    NSArray *array = [DZOperateCharacter findAllSpecityStringWithContent:self.string pattern:pattern];
     NSMutableString *preview = [NSMutableString string];
     for (DZResults *find in array) {
         [preview appendFormat:@"%@\n", find.resultString];
@@ -352,7 +352,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)findSpecifyStringWithPattern:(NSString *)pattern
 {
-    DZResults *find = [DZOperateCharacter findSpecityContentWithFilePath:self.filePath pattern:pattern];
+    DZResults *find = [DZOperateCharacter findSpecityStringWithContent:self.string pattern:pattern];
     if (find) {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@\n", find.resultString]];
         _selectedRange = find.resultRange;
