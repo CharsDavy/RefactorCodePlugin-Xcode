@@ -38,7 +38,10 @@ NSUInteger currentIdx = 0;
     
     for (NSTextCheckingResult *result in results) {
         DZLog(@"%@ %@", NSStringFromRange(result.range), [fileContent substringWithRange:result.range]);
-        [arrayM addObject:[fileContent substringWithRange:result.range]];
+        DZResults *ret = [[DZResults alloc] init];
+        ret.resultString = [fileContent substringWithRange:result.range];
+        ret.resultRange = result.range;
+        [arrayM addObject: ret];
     }
     
     return (NSArray *)arrayM;

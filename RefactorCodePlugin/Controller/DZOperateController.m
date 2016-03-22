@@ -9,6 +9,28 @@
 #import "DZOperateController.h"
 #import "DZOperateCharacter.h"
 
+static NSString *DZSetterMethodFindRegexPattern = @"(\\[)(.+)(?<=set)[A-Z]\\w+(.+)(\\];)";
+static NSString *DZNSArrayMethodFindRegexPattern = @"(.+)(?<=array)\\w+(.+)";
+static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w+(.+)";
+
+/**
+ *  Ruby Regular
+ Setter:(\[\s*\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(.+))(\s*\];))|((\[\s*)+\w+[\.]*\w*\s*\w+\s*\]\s*\w*(set)*\s*\]*(:)*\s*\w*(set)*(:){0,1}\s*\w*\s*\];)
+ Test string:
+ [self.url setUrl:@"/Users/chars/test.m"];
+ [[test.a find] setBB:partten];
+ [[test.b finds] XXXsetBB:partten];
+ [[[test.c findx] XXXsFFF] setXXXX:abc];
+ [[[test.d findw] setSSSS] setXXXX:abce];
+ [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
+ [self setEnable:YES];
+ [self setEXXXXXnable:NO];
+ [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
+ 
+ NSArray:
+ NSDictionary:
+ */
+
 @interface DZOperateController ()
 @property (weak) IBOutlet NSPopUpButton *methodStylePopUpButton;
 @property (nonatomic, copy)NSArray *styles;
@@ -88,21 +110,21 @@
     [DZOperateCharacter zeroCurrentIdx];
 }
 
-#pragma mark Find Button Action
+#pragma mark All Button Action
 
-- (IBAction)findButtonAction:(NSButton *)sender
+- (IBAction)allButtonAction:(NSButton *)sender
 {
     NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:DZDefaultsKeyMethodStyle];
     NSString *pattern = [[NSString alloc] init];
     
     if ([selectedStyle isEqualToString:@"Setter"]) {
-        pattern = DZSetterMethodRegexPattern;
+        pattern = DZSetterMethodFindRegexPattern;
     }else if ([selectedStyle isEqualToString:@"NSArray"]) {
-        pattern = DZNSArrayMethodRegexPattern;
+        pattern = DZNSArrayMethodFindRegexPattern;
     }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
-        pattern = DZNSDictionaryMethodRegexPattern;
+        pattern = DZNSDictionaryMethodFindRegexPattern;
     }else {
-        DZLog(@"findButtonAction Error!");
+        DZLog(@"allButtonAction Error!");
     }
     
     if ([_delegate respondsToSelector:@selector(findAllSpecifyStringWithPattern:)]) {
@@ -132,22 +154,22 @@
         }
         DZLog(@"Style is NSDictionary");
     }else {
-        DZLog(@"changeButtonAction Error!");
+        DZLog(@"applyButtonAction Error!");
     }
 }
 
-#pragma mark Next Button Action
-- (IBAction)nextButtonAction:(NSButton *)sender
+#pragma mark Find Button Action
+- (IBAction)findButtonAction:(NSButton *)sender
 {
     NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:DZDefaultsKeyMethodStyle];
     NSString *pattern = [[NSString alloc] init];
     
     if ([selectedStyle isEqualToString:@"Setter"]) {
-        pattern = DZSetterMethodRegexPattern;
+        pattern = DZSetterMethodFindRegexPattern;
     }else if ([selectedStyle isEqualToString:@"NSArray"]) {
-        pattern = DZNSArrayMethodRegexPattern;
+        pattern = DZNSArrayMethodFindRegexPattern;
     }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
-        pattern = DZNSDictionaryMethodRegexPattern;
+        pattern = DZNSDictionaryMethodFindRegexPattern;
     }else {
         DZLog(@"findButtonAction Error!");
     }

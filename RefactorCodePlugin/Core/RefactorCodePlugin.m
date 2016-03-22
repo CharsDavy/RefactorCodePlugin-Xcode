@@ -86,8 +86,11 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     //Get the file path
     NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
     if (originURL != nil && [originURL absoluteString].length >= 7 ) {
+        if (![self.url isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
+            [DZOperateCharacter zeroCurrentIdx];
+        }
         self.url = [originURL.absoluteString substringFromIndex:7];
-        NSLog(@"url is : %@", self.url);
+        DZLog(@"url is : %@", self.url);
     }
 }
 
@@ -198,15 +201,12 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     NSTextView *textView = self.sourceTextView;
     NSRange selectedRange = [textView selectedRange];
     NSString *text = textView.textStorage.string;
-    DZLog(@"selectedRange : %@, text : %@", NSStringFromRange(selectedRange), text);
-    NSString *nSelectedStr = nil;
-    if (_selectedRange.length > 0) {
-        text = [NSString stringWithContentsOfFile:self.url encoding:NSUTF8StringEncoding error:nil];
-        nSelectedStr = [[text substringWithRange:_selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
-        DZLog(@"_selectedRange : %@", NSStringFromRange(_selectedRange));
-    }else {
-        nSelectedStr = [[text substringWithRange:selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+
+    if (_selectedRange.length > 0 && (_selectedRange.location + _selectedRange.length) <= text.length) {
+        selectedRange = _selectedRange;
     }
+    
+    NSString *nSelectedStr = [[text substringWithRange:selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
     
     //如果新选中的长度为0 就返回空
     if (!nSelectedStr.length) {
@@ -304,7 +304,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)operateSetterStyleAction
 {
-    
     DZLog(@"operateSetterStyleAction in plugin");
 }
 
@@ -322,8 +321,8 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.url pattern:pattern];
     NSMutableString *preview = [NSMutableString string];
-    for (NSString *findStr in array) {
-        [preview appendFormat:@"\n%@", findStr];
+    for (DZResults *find in array) {
+        [preview appendFormat:@"\n%@", find.resultString];
     }
     
     if (preview) {
@@ -340,7 +339,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     if (find) {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", find.resultString]];
         _selectedRange = find.resultRange;
-        DZLog(@"_selectedRange : %@", NSStringFromRange(_selectedRange));
     }else {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
     }
