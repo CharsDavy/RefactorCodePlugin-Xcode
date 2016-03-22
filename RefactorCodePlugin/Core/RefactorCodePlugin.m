@@ -184,7 +184,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     [self.operateController.preview.textStorage beginEditing];
     NSDictionary *attrsDict = @{NSTextEffectAttributeName: NSTextEffectLetterpressStyle};
-    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"Letterpress" attributes:attrsDict];
+    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrsDict];
     NSAttributedString *appendAttrString = [[NSAttributedString alloc] initWithString:string];
     [mutableAttrString appendAttributedString:appendAttrString];
     [self.operateController.preview.textStorage setAttributedString:mutableAttrString];
@@ -197,7 +197,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     [self.sourceTextView.textStorage beginEditing];
     NSDictionary *attrsDict = @{NSTextEffectAttributeName: NSTextEffectLetterpressStyle};
-    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"Letterpress" attributes:attrsDict];
+    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrsDict];
     NSAttributedString *replaceAttrString = [[NSAttributedString alloc] initWithString:string];
     [mutableAttrString appendAttributedString:replaceAttrString];
     [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
@@ -320,7 +320,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     NSMutableString *origin = [[NSMutableString alloc] initWithString:self.string];
     NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:@"[menuItem setTarget:test];"];
-    DZLog(@"replace : %p, string : %p", replace, self.string);
     [self replaceSourceTextViewContentWithString:replace];
     DZLog(@"operateSetterStyleAction in plugin");
 }
@@ -340,7 +339,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.filePath pattern:pattern];
     NSMutableString *preview = [NSMutableString string];
     for (DZResults *find in array) {
-        [preview appendFormat:@"\n%@", find.resultString];
+        [preview appendFormat:@"%@\n", find.resultString];
     }
     
     if (preview) {
@@ -355,7 +354,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     DZResults *find = [DZOperateCharacter findSpecityContentWithFilePath:self.filePath pattern:pattern];
     if (find) {
-        [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", find.resultString]];
+        [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@\n", find.resultString]];
         _selectedRange = find.resultRange;
     }else {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
@@ -386,7 +385,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [self setFlag:YES];
     NSArray *array = [NSArray arrayWithObjects:@"1", @"2", @"3", nil];
     array = [NSArray arrayWithContentsOfFile:@"xxxxx"];
-    array = [NSArray arrayWithContentsOfURL:@"sdxcfd"];
+    array = [NSArray arrayWithContentsOfURL:[NSURL URLWithString:@"myzaker.com"]];
     NSDictionary *dict = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
     NSDictionary *dict1 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
     NSDictionary *dict2 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
