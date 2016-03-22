@@ -19,7 +19,6 @@
 @end
 
 @interface DZOperateController : NSWindowController
-@property (weak) IBOutlet NSTextField *selectedTextField;
 @property (unsafe_unretained) IBOutlet NSTextView *preview;
 
 @property (nonatomic, assign)id <DZOperateDelegate> delegate;

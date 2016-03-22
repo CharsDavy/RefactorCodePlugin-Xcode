@@ -73,7 +73,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     // addObserver
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePathObtain:) name:DZCurrentFilePathChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
-    
     // Create menu items, initialize UI, etc.
     // Init Config
     [self initConfig];
@@ -93,8 +92,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 }
 
 -(void)selectionDidChange:(NSNotification *)notify {
-    
-    self.sourceTextView =  [notify object];
     
     if ([[notify object] isKindOfClass:[NSTextView class]]) {
         NSTextView *textView = [notify object];
@@ -200,13 +197,13 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     NSTextView *textView = self.sourceTextView;
     NSRange selectedRange = [textView selectedRange];
-    DZLog(@"selectedRange : %@", NSStringFromRange(selectedRange));
     NSString *text = textView.textStorage.string;
-    DZLog(@"text : %@", text);
+    DZLog(@"selectedRange : %@, text : %@", NSStringFromRange(selectedRange), text);
     NSString *nSelectedStr = nil;
     if (_selectedRange.length > 0) {
         text = [NSString stringWithContentsOfFile:self.url encoding:NSUTF8StringEncoding error:nil];
         nSelectedStr = [[text substringWithRange:_selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
+        DZLog(@"_selectedRange : %@", NSStringFromRange(_selectedRange));
     }else {
         nSelectedStr = [[text substringWithRange:selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
     }
@@ -323,7 +320,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)findAllSpecifyStringWithPattern:(NSString *)pattern
 {
-    NSString *select = self.operateController.selectedTextField.stringValue;
     NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.url pattern:pattern];
     NSMutableString *preview = [NSMutableString string];
     for (NSString *findStr in array) {
@@ -335,12 +331,11 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     }else {
         [self updatePreviewContentWithString:@"Finished"];
     }
-    DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
+    DZLog(@"findSpecifyStringWithPattern: in plugin");
 }
 
 - (void)findSpecifyStringWithPattern:(NSString *)pattern
 {
-    NSString *select = self.operateController.selectedTextField.stringValue;
     DZResults *find = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
     if (find) {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", find.resultString]];
@@ -349,7 +344,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     }else {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
     }
-    DZLog(@"findSpecifyStringWithPattern: in plugin, select string is : %@", select);
+    DZLog(@"findSpecifyStringWithPattern: in plugin");
     [self todoHighlighting];
 }
 

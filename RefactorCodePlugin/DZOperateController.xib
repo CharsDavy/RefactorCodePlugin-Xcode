@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="methodStylePopUpButton" destination="U6o-Dy-0uD" id="KLX-xQ-rKB"/>
                 <outlet property="preview" destination="NLS-KQ-xGB" id="Ox7-gA-u1m"/>
-                <outlet property="selectedTextField" destination="8VC-ny-t0O" id="ZiC-Zk-p1o"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -22,33 +21,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="517" height="322"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8VC-ny-t0O">
-                        <rect key="frame" x="116" y="276" width="210" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="yqi-Yf-Yk1">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6o-Dy-0uD">
-                        <rect key="frame" x="207" y="29" width="150" height="26"/>
-                        <popUpButtonCell key="cell" type="push" title="Setter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wR9-jv-TsK" id="bJi-3q-cON">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="6CU-Ox-fgI">
-                                <items>
-                                    <menuItem title="Setter" state="on" id="wR9-jv-TsK"/>
-                                    <menuItem title="Item 2" id="R2B-W5-zjv"/>
-                                    <menuItem title="Item 3" id="GHh-bz-0fN"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="selectedMethodStyleAction:" target="-2" id="LD9-fB-7qh"/>
-                        </connections>
-                    </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97u-oJ-ce2">
-                        <rect key="frame" x="40" y="34" width="150" height="17"/>
+                        <rect key="frame" x="38" y="69" width="150" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Select Method Style : " id="9UF-gZ-Csb">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +30,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2dI-rs-2Rk">
-                        <rect key="frame" x="413" y="270" width="70" height="32"/>
+                        <rect key="frame" x="390" y="60" width="93" height="32"/>
                         <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ekl-rK-1ig">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -65,14 +39,6 @@
                             <action selector="nextButtonAction:" target="-2" id="KlN-RW-Ct5"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkq-c3-5JM">
-                        <rect key="frame" x="40" y="278" width="73" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Selection : " id="Z8B-Nz-gkG">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWY-gz-04b">
                         <rect key="frame" x="390" y="25" width="93" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgu-Rq-LJ4">
@@ -84,7 +50,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ibm-6S-IEp">
-                        <rect key="frame" x="341" y="270" width="70" height="32"/>
+                        <rect key="frame" x="293" y="60" width="93" height="32"/>
                         <buttonCell key="cell" type="push" title="Find" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q9l-Ec-p0Z">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -94,7 +60,7 @@
                         </connections>
                     </button>
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwq-ka-6pb">
-                        <rect key="frame" x="40" y="67" width="437" height="195"/>
+                        <rect key="frame" x="40" y="102" width="437" height="195"/>
                         <clipView key="contentView" ambiguous="YES" id="eTE-Ns-Uvr">
                             <rect key="frame" x="1" y="1" width="435" height="193"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +87,23 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6o-Dy-0uD">
+                        <rect key="frame" x="38" y="29" width="150" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Setter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wR9-jv-TsK" id="bJi-3q-cON">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="6CU-Ox-fgI">
+                                <items>
+                                    <menuItem title="Setter" state="on" id="wR9-jv-TsK"/>
+                                    <menuItem title="Item 2" id="R2B-W5-zjv"/>
+                                    <menuItem title="Item 3" id="GHh-bz-0fN"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="selectedMethodStyleAction:" target="-2" id="LD9-fB-7qh"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
             <connections>
