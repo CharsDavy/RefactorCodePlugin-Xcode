@@ -95,6 +95,9 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 }
 
 -(void)selectionDidChange:(NSNotification *)notify {
+    if (!self.sourceTextView) {
+        self.sourceTextView = [notify object];
+    }
     
     if ([[notify object] isKindOfClass:[NSTextView class]]) {
         NSTextView *textView = [notify object];
@@ -287,7 +290,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
         NSDictionary *dict = [textView.layoutManager temporaryAttributesAtCharacterIndex:i effectiveRange:&range];
         id obj = dict[NSBackgroundColorAttributeName];
         if (obj && [_highlightColor isEqual:obj]) {
-            
             [textView.layoutManager removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:range];
         }
         i += range.length;
