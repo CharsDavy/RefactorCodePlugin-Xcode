@@ -13,7 +13,6 @@
 #import "DZResults.h"
 
 static const char hilightStateKey;
-
 NSString *DZCurrentFilePathChangeNotification = @"transition from one file to another";
 
 @interface RefactorCodePlugin()<DZOperateDelegate>
@@ -27,7 +26,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 @property (nonatomic, readonly) NSString *string;
 @property (nonatomic, assign) NSRange selectedRange;
 
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *filePath;
 
 @property (nonatomic, assign) BOOL flag;
 
@@ -86,11 +85,11 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     //Get the file path
     NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
     if (originURL != nil && [originURL absoluteString].length >= 7 ) {
-        if (![self.url isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
+        if (![self.filePath isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
             [DZOperateCharacter zeroCurrentIdx];
         }
-        self.url = [originURL.absoluteString substringFromIndex:7];
-        DZLog(@"url is : %@", self.url);
+        self.filePath = [originURL.absoluteString substringFromIndex:7];
+        DZLog(@"filePath is : %@", self.filePath);
     }
 }
 
@@ -192,6 +191,19 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [self.operateController.preview.textStorage endEditing];
 }
 
+#pragma mark Replace SourceTextView Content
+
+- (void)replaceSourceTextViewContentWithString:(NSString *)string
+{
+    [self.sourceTextView.textStorage beginEditing];
+    NSDictionary *attrsDict = @{NSTextEffectAttributeName: NSTextEffectLetterpressStyle};
+    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"Letterpress" attributes:attrsDict];
+    NSAttributedString *replaceAttrString = [[NSAttributedString alloc] initWithString:string];
+    [mutableAttrString appendAttributedString:replaceAttrString];
+    [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
+    [self.sourceTextView.textStorage endEditing];
+}
+
 #pragma mark todoHighlight
 
 - (void)todoHighlighting
@@ -233,7 +245,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [self addBackgroundColorWithRangeArray:array];
 }
 
-- (void)addBackgroundColorWithRangeArray:(NSArray*)rangeArray
+- (void)addBackgroundColorWithRangeArray:(NSArray *)rangeArray
 {
     NSTextView *textView = self.sourceTextView;
     
@@ -306,6 +318,10 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)operateSetterStyleAction
 {
+    NSMutableString *origin = [[NSMutableString alloc] initWithString:self.string];
+    NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:@"[menuItem setTarget:test];"];
+    DZLog(@"replace : %p, string : %p", replace, self.string);
+    [self replaceSourceTextViewContentWithString:replace];
     DZLog(@"operateSetterStyleAction in plugin");
 }
 
@@ -321,7 +337,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)findAllSpecifyStringWithPattern:(NSString *)pattern
 {
-    NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.url pattern:pattern];
+    NSArray *array = [DZOperateCharacter findAllSpecityContentWithFilePath:self.filePath pattern:pattern];
     NSMutableString *preview = [NSMutableString string];
     for (DZResults *find in array) {
         [preview appendFormat:@"\n%@", find.resultString];
@@ -337,7 +353,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)findSpecifyStringWithPattern:(NSString *)pattern
 {
-    DZResults *find = [DZOperateCharacter findSpecityContentWithFilePath:self.url pattern:pattern];
+    DZResults *find = [DZOperateCharacter findSpecityContentWithFilePath:self.filePath pattern:pattern];
     if (find) {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\n%@", find.resultString]];
         _selectedRange = find.resultRange;
@@ -366,7 +382,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     //[  [self.dsadas dsds] setSSSS : dsads    ];
     [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
     [NSString stringWithFormat:@"%@", @"ssssss"];
-    [self setUrl:@"/Users/chars/Xcode_code/RefactorCodePlugin/RefactorCodePlugin/Core/RefactorCodePlugin.m"];
+    [self setFilePath:@"/Users/chars/Xcode_code/RefactorCodePlugin/RefactorCodePlugin/Core/RefactorCodePlugin.m"];
     [self setFlag:YES];
     NSArray *array = [NSArray arrayWithObjects:@"1", @"2", @"3", nil];
     array = [NSArray arrayWithContentsOfFile:@"xxxxx"];
