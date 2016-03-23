@@ -70,7 +70,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
     // addObserver
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePathObtain:) name:DZCurrentFilePathChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowsWillClose:) name:NSWindowWillCloseNotification object:nil];
     // Create menu items, initialize UI, etc.
@@ -87,19 +86,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [self highlightSelectedStrings];
     [DZOperateCharacter zeroCurrentIdx];
     [self updatePreviewContentWithString:@""];
-}
-
-- (void)filePathObtain:(NSNotification *)notify
-{
-    //Get the file path
-    NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
-    if (originURL != nil && [originURL absoluteString].length >= 7 ) {
-        if (![self.filePath isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
-            [DZOperateCharacter zeroCurrentIdx];
-        }
-        self.filePath = [originURL.absoluteString substringFromIndex:7];
-        DZLog(@"filePath is : %@", self.filePath);
-    }
 }
 
 -(void)selectionDidChange:(NSNotification *)notify {
@@ -213,6 +199,8 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [self.sourceTextView.textStorage edited:NSTextStorageEditedAttributes range:NSMakeRange(0, self.string.length) changeInLength:0];
     [self.sourceTextView.textStorage endEditing];
 }
+
+#pragma mark - Highlighting
 
 #pragma mark todoHighlight
 
@@ -369,6 +357,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@\n", find.resultString]];
         _selectedRange = find.resultRange;
         [self todoHighlighting];
+        [self.sourceTextView scrollRangeToVisible:_selectedRange];
     }else {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
     }

@@ -15,19 +15,38 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
 
 /**
  *  Ruby Regular
- Setter:(\[\s*\w+[\.]*\w*\s+(set)\w+(:)((\w+)|(.+))(\s*\];))|((\[\s*)+\w+[\.]*\w*\s*\w+\s*\]\s*\w*(set)*\s*\]*(:)*\s*\w*(set)*(:){0,1}\s*\w*\s*\];)
+ ------------------------------------------------------------------------
+ Setter:
+ Parse:
+ head:(?!\[)(.+)(?=\s+set)
  Test string:
+ [self setEnable:YES];
+ [self setEXXXXXnable:NO];
+ [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
  [self.url setUrl:@"/Users/chars/test.m"];
  [[test.a find] setBB:partten];
  [[test.b finds] XXXsetBB:partten];
  [[[test.c findx] XXXsFFF] setXXXX:abc];
  [[[test.d findw] setSSSS] setXXXX:abce];
  [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
+ 
+ tail:(?<=set)[A-Z]\w+(?=:|\s*)
+ Test string:
  [self setEnable:YES];
  [self setEXXXXXnable:NO];
  [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
  
+ 
+ [self.url setUrl:@"/Users/chars/test.m"];
+ [[test.a find] setBB:partten];
+ [[test.b finds] XXXsetBB:partten];
+ [[[test.c findx] XXXsFFF] setXXXX:abc];
+ [[[test.d findw] setSSSS] setXXXX:abce];
+ [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
+ 
+ ------------------------------------------------------------------------
  NSArray:
+ ------------------------------------------------------------------------
  NSDictionary:
  */
 
