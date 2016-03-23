@@ -196,8 +196,9 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     NSAttributedString *replaceAttrString = [[NSAttributedString alloc] initWithString:string];
     [mutableAttrString appendAttributedString:replaceAttrString];
     [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
-    [self.sourceTextView.textStorage edited:NSTextStorageEditedAttributes range:NSMakeRange(0, self.string.length) changeInLength:0];
     [self.sourceTextView.textStorage endEditing];
+
+
 }
 
 #pragma mark - Highlighting
@@ -321,6 +322,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     NSMutableString *origin = [[NSMutableString alloc] initWithString:self.string];
     NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:@"[menuItem setTarget:testtest];"];
     [self replaceSourceTextViewContentWithString:replace];
+    [self.sourceTextView scrollRangeToVisible:_selectedRange];
     DZLog(@"operateSetterStyleAction in plugin");
 }
 
