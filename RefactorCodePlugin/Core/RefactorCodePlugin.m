@@ -72,12 +72,18 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     // addObserver
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePathObtain:) name:DZCurrentFilePathChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowsWillClose:) name:NSWindowWillCloseNotification object:nil];
     // Create menu items, initialize UI, etc.
     // Init Config
     [self initConfig];
     // Menu Item:
     [self setupMenuItem];
     
+}
+
+- (void) windowsWillClose:(NSNotification *)notify
+{
+    [self removeAllHighlighting];
 }
 
 - (void)filePathObtain:(NSNotification *)notify
@@ -201,6 +207,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     NSAttributedString *replaceAttrString = [[NSAttributedString alloc] initWithString:string];
     [mutableAttrString appendAttributedString:replaceAttrString];
     [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
+    [self.sourceTextView.textStorage edited:NSTextStorageEditedAttributes range:NSMakeRange(0, self.string.length) changeInLength:0];
     [self.sourceTextView.textStorage endEditing];
 }
 
@@ -214,11 +221,13 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 - (NSString *)selectedText
 {
     NSTextView *textView = self.sourceTextView;
-    NSRange selectedRange = [textView selectedRange];
+    NSRange selectedRange = {0}/*[textView selectedRange]*/;
     NSString *text = textView.textStorage.string;
 
     if (_selectedRange.length > 0 && (_selectedRange.location + _selectedRange.length) <= text.length) {
         selectedRange = _selectedRange;
+    } else {
+        return @"";
     }
     
     NSString *nSelectedStr = [[text substringWithRange:selectedRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n"]];
@@ -356,11 +365,11 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     if (find) {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@\n", find.resultString]];
         _selectedRange = find.resultRange;
+        [self todoHighlighting];
     }else {
         [self updatePreviewContentWithString:[NSString stringWithFormat:@"\nFinished"]];
     }
     DZLog(@"findSpecifyStringWithPattern: in plugin");
-    [self todoHighlighting];
 }
 
 #pragma mark - Accessor Overrides
