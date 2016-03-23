@@ -190,15 +190,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)replaceSourceTextViewContentWithString:(NSString *)string
 {
-    [self.sourceTextView.textStorage beginEditing];
-    NSDictionary *attrsDict = @{NSTextEffectAttributeName: NSTextEffectLetterpressStyle};
-    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrsDict];
-    NSAttributedString *replaceAttrString = [[NSAttributedString alloc] initWithString:string];
-    [mutableAttrString appendAttributedString:replaceAttrString];
-    [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
-    [self.sourceTextView.textStorage endEditing];
-
-
+    [self.sourceTextView setMarkedText:string selectedRange:_selectedRange replacementRange:_selectedRange];
 }
 
 #pragma mark - Highlighting
@@ -319,8 +311,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)operateSetterStyleAction
 {
-    NSMutableString *origin = [[NSMutableString alloc] initWithString:self.string];
-    NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:@"[menuItem setTarget:testtest];"];
+    NSString *replace = [[NSString alloc] initWithFormat:@"%@", @"[menuItem setTarget:testtest];"];
     [self replaceSourceTextViewContentWithString:replace];
     [self.sourceTextView scrollRangeToVisible:_selectedRange];
     DZLog(@"operateSetterStyleAction in plugin");
