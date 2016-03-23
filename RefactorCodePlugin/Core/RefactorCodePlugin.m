@@ -21,7 +21,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 @property (nonatomic, readonly) DZOperateController *operateController;
 
 @property (nonatomic, strong) NSColor *highlightColor;
-@property (nonatomic, unsafe_unretained) NSTextView *sourceTextView;
+@property (nonatomic, strong) NSTextView *sourceTextView;
 @property (nonatomic, copy) NSString *selectedText;
 @property (nonatomic, readonly) NSString *string;
 @property (nonatomic, assign) NSRange selectedRange;
@@ -83,7 +83,10 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void) windowsWillClose:(NSNotification *)notify
 {
-    [self removeAllHighlighting];
+    self.selectedRange = NSMakeRange(0, 0);
+    [self highlightSelectedStrings];
+    [DZOperateCharacter zeroCurrentIdx];
+    [self updatePreviewContentWithString:@""];
 }
 
 - (void)filePathObtain:(NSNotification *)notify
@@ -173,7 +176,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     if (!url) {
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = @"Refactor Method Style could not be shown because the plugin is corrupted.";
-        alert.informativeText = @"If you built the plugin from sources using Xcode, make sure to perform “Clean Build Folder“ in Xcode and then build the plugin again.\n\nIf you installed the plugin via Alctraz, there is a pending issue causing some files to be missing in the plugin. Prefer to install it via the plugin webpage.";
+        alert.informativeText = @"If you build the plugin from sources using Xcode, make sure to perform “Clean Build Folder“ in Xcode and then build the plugin again.\n\nIf you installed the plugin via Alctraz, there is a pending issue causing some files to be missing in the plugin. Prefer to install it via the plugin webpage.";
         [alert addButtonWithTitle:@"Download Latest"];
         [alert addButtonWithTitle:@"Cancel"];
         NSModalResponse result = [alert runModal];
