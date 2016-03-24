@@ -190,7 +190,18 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)replaceSourceTextViewContentWithString:(NSString *)string
 {
-    [self.sourceTextView setMarkedText:string selectedRange:_selectedRange replacementRange:_selectedRange];
+    //[self.sourceTextView setMarkedText:string selectedRange:_selectedRange replacementRange:_selectedRange];
+    [self.sourceTextView.textStorage beginEditing];
+    NSString *origin = [[NSString alloc] initWithFormat:@"%@", self.sourceTextView.string];
+    NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:string];
+    NSDictionary *attrsDict = @{NSTextEffectAttributeName: NSTextEffectLetterpressStyle};
+    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrsDict];
+    NSAttributedString *appendAttrString = [[NSAttributedString alloc] initWithString:replace];
+    [mutableAttrString appendAttributedString:appendAttrString];
+    [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
+    [self.sourceTextView.textStorage endEditing];
+    
+    [self.sourceTextView shouldChangeTextInRange:_selectedRange replacementString:string];
 }
 
 #pragma mark - Highlighting
