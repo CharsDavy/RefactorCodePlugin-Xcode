@@ -27,7 +27,6 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 @property (nonatomic, assign) NSRange selectedRange;
 
 @property (nonatomic, copy) NSString *filePath;
-
 @property (nonatomic, assign) BOOL flag;
 
 @end
@@ -190,21 +189,13 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)replaceSourceTextViewContentWithString:(NSString *)string
 {
-    //[self.sourceTextView setMarkedText:string selectedRange:_selectedRange replacementRange:_selectedRange];
-    [self.sourceTextView.textStorage beginEditing];
-    NSString *origin = [[NSString alloc] initWithFormat:@"%@", self.sourceTextView.string];
-    NSString *replace = [origin stringByReplacingCharactersInRange:_selectedRange withString:string];
-    NSDictionary *attrsDict = @{NSTextEffectAttributeName: NSTextEffectLetterpressStyle};
-    NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrsDict];
-    NSAttributedString *appendAttrString = [[NSAttributedString alloc] initWithString:replace];
-    [mutableAttrString appendAttributedString:appendAttrString];
-    [self.sourceTextView.textStorage setAttributedString:mutableAttrString];
-    [self.sourceTextView.textStorage endEditing];
-    
+//    [self.sourceTextView setMarkedText:string selectedRange:NSMakeRange(0, 0) replacementRange:_selectedRange];
+
     [self.sourceTextView shouldChangeTextInRange:_selectedRange replacementString:string];
+    [self.sourceTextView replaceCharactersInRange:_selectedRange withString:string];
 }
 
-#pragma mark - Highlighting
+#pragma mark - Highlighting Actions
 
 #pragma mark todoHighlight
 
