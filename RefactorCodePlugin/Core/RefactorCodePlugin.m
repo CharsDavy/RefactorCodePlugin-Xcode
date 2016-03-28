@@ -25,6 +25,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 @property (nonatomic, copy) NSString *selectedText;
 @property (nonatomic, readonly) NSString *string;
 @property (nonatomic, assign) NSRange selectedRange;
+@property (nonatomic, copy) DZResults *currentReplaceResult;
 
 @property (nonatomic, copy) NSString *filePath;
 @property (nonatomic, assign) BOOL flag;
@@ -313,8 +314,8 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)operateSetterStyleAction
 {
-    NSString *replace = [[NSString alloc] initWithFormat:@"%@", @"[menuItem setTarget:testtest];"];
-    [self replaceSourceTextViewContentWithString:replace];
+    [self replaceSourceTextViewContentWithString:self.currentReplaceResult.resultString];
+    _selectedRange = NSMakeRange(_selectedRange.location, self.currentReplaceResult.resultString.length);
     [self.sourceTextView scrollRangeToVisible:_selectedRange];
     DZLog(@"operateSetterStyleAction in plugin");
 }
@@ -349,7 +350,8 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 {
     DZResults *find = [DZOperateCharacter findSpecityStringWithContent:self.string pattern:pattern];
     if (find) {
-        [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@\n", find.resultString]];
+        _currentReplaceResult = [DZOperateCharacter createSetterMethodReplaceStringWithSpecityString:find.resultString];
+        [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@ \n=> \n%@\n", find.resultString, _currentReplaceResult.resultString]];
         _selectedRange = find.resultRange;
         [self todoHighlighting];
         [self.sourceTextView scrollRangeToVisible:_selectedRange];

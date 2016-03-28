@@ -24,7 +24,7 @@ NSUInteger currentIdx = 0;
     //According to the regular expression，set up Objective-C rules
     NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
     if (error) {
-        DZLog(@"regular error:%@",error);
+        DZLog(@"find all specity string regular error:%@",error);
     }
     
     //Test for regular
@@ -52,7 +52,7 @@ NSUInteger currentIdx = 0;
     //According to the regular expression，set up Objective-C rules
     NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
     if (error) {
-        DZLog(@"regular error:%@",error);
+        DZLog(@"find specity string regular error:%@",error);
     }
     
     if (currentIdx > content.length) {
@@ -78,6 +78,52 @@ NSUInteger currentIdx = 0;
 + (void)zeroCurrentIdx
 {
     currentIdx = 0;
+}
+
++ (DZResults *)createSetterMethodReplaceStringWithSpecityString:(NSString *)specity
+{
+    DZResults *ret = [[DZResults alloc] init];
+    NSError *error = nil;
+    NSString *headerPattern = [[NSString alloc] initWithFormat:@"%@", @"(\\w+\\.{0,1}\\w+)(?=\\s+set)"];
+    NSString *valuePattern =  [[NSString alloc] initWithFormat:@"%@", @"(?<=set)(\\w+)(?=:)"];
+    NSString *tailPattern = [[NSString alloc] initWithFormat:@"%@", @"(?<=\\:)(\\w+)" ];
+    
+    //According to the regular expression，set up Objective-C rules
+    NSRegularExpression *headerRegular = [[NSRegularExpression alloc] initWithPattern:headerPattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
+    if (error) {
+        DZLog(@"create replace string header regular error:%@",error);
+        error = nil;
+    }
+    NSTextCheckingResult *header = [headerRegular firstMatchInString:specity options:0 range:NSMakeRange(0, specity.length)];
+    if (!header) {
+        DZLog(@"createReplaceStringWithSpecityString Header Error!");
+        return NULL;
+    }
+    
+    NSRegularExpression *valueRegular = [[NSRegularExpression alloc] initWithPattern:valuePattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
+    if (error) {
+        DZLog(@"create replace string value regular error:%@",error);
+        error = nil;
+    }
+    NSTextCheckingResult *value = [valueRegular firstMatchInString:specity options:0 range:NSMakeRange(0, specity.length)];
+    if (!value) {
+        DZLog(@"createReplaceStringWithSpecityString Header Error!");
+        return NULL;
+    }
+    
+    NSRegularExpression *tailRegular = [[NSRegularExpression alloc] initWithPattern:tailPattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];
+    if (error) {
+        DZLog(@"create replace string tail regular error:%@",error);
+    }
+    NSTextCheckingResult *tail = [tailRegular firstMatchInString:specity options:0 range:NSMakeRange(0, specity.length)];
+    if (!tail) {
+        DZLog(@"createReplaceStringWithSpecityString Tail Error!");
+        return NULL;
+    }
+       
+    ret.resultString = [[NSString alloc] initWithFormat:@"%@.%@ = %@;", [specity substringWithRange:header.range], [[specity substringWithRange:value.range] lowercaseString], [specity substringWithRange:tail.range]];
+    
+    return ret;
 }
 
 @end

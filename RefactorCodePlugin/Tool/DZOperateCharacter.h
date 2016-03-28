@@ -17,4 +17,6 @@
 
 + (void)zeroCurrentIdx;
 
++ (DZResults *)createSetterMethodReplaceStringWithSpecityString:(NSString *)specity;
+
 @end
