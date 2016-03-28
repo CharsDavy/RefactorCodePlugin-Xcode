@@ -90,7 +90,7 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
 -(NSArray *)styles
 {
     if (_styles == nil) {
-        _styles = [NSArray arrayWithObjects:@"Setter", @"NSArray", @"NSDictionary", nil];
+        _styles = [NSArray arrayWithObjects:@"Setter", /*@"NSArray", @"NSDictionary",*/ nil];
     }
     return _styles;
 }
