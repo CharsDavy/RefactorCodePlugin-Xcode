@@ -9,7 +9,7 @@
 #import "DZOperateController.h"
 #import "DZOperateCharacter.h"
 
-static NSString *DZSetterMethodFindRegexPattern = @"(\\[)(.+)(?<=set)[A-Z]\\w+(.+)(\\];)";
+static NSString *DZSetterMethodFindRegexPattern = @"(\\[)(.+)(?<=\\sset)[A-Z]\\w+(.+)(\\];)";
 static NSString *DZNSArrayMethodFindRegexPattern = @"(.+)(?<=array)\\w+(.+)";
 static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w+(.+)";
 
@@ -24,7 +24,7 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
  [self setEXXXXXnable:NO];
  [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
  [self.url setUrl:@"/Users/chars/test.m"];
- [[test.a find] setBB:partten];
+ [[test.a find]    setBB:partten];
  [[test.b finds] XXXsetBB:partten];
  [[[test.c findx] XXXsFFF] setXXXX:abc];
  [[[test.d findw] setSSSS] setXXXX:abce];
@@ -43,6 +43,7 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
  [[[test.c findx] XXXsFFF] setXXXX:abc];
  [[[test.d findw] setSSSS] setXXXX:abce];
  [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
+ [self setString:[NSString stringWithFormat:@"%@", @"ssssss"]]; 
  
  ------------------------------------------------------------------------
  NSArray:

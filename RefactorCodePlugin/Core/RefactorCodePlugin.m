@@ -70,6 +70,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
     // addObserver
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentFileChange:) name:DZCurrentFilePathChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowsWillClose:) name:NSWindowWillCloseNotification object:nil];
     // Create menu items, initialize UI, etc.
@@ -78,6 +79,13 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     // Menu Item:
     [self setupMenuItem];
     
+}
+
+- (void) currentFileChange:(NSNotification *)notify
+{
+    self.selectedRange = NSMakeRange(0, 0);
+    [self highlightSelectedStrings];
+    [DZOperateCharacter zeroCurrentIdx];
 }
 
 - (void) windowsWillClose:(NSNotification *)notify
@@ -351,7 +359,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     DZResults *find = [DZOperateCharacter findSpecityStringWithContent:self.string pattern:pattern];
     if (find) {
         _currentReplaceResult = [DZOperateCharacter createSetterMethodReplaceStringWithSpecityString:find.resultString];
-        [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@ \n=> \n%@\n", find.resultString, _currentReplaceResult.resultString]];
+        [self updatePreviewContentWithString:[NSString stringWithFormat:@"%@\n  =>\n%@\n", find.resultString, _currentReplaceResult.resultString]];
         _selectedRange = find.resultRange;
         [self todoHighlighting];
         [self.sourceTextView scrollRangeToVisible:_selectedRange];
