@@ -380,35 +380,4 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     return [self.textStorage string];
 }
 
-#pragma mark - Test
-
-- (void)test
-{
-    //[  [self.dsadas dsds] setSSSS : dsads    ];
-    [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
-    [NSString stringWithFormat:@"%@", @"ssssss"];
-    [self setFilePath:@"/Users/chars/Xcode_code/RefactorCodePlugin/RefactorCodePlugin/Core/RefactorCodePlugin.m"];
-    [self setFlag:YES];
-    NSArray *array = [NSArray arrayWithObjects:@"1", @"2", @"3", nil];
-    array = [NSArray arrayWithContentsOfFile:@"xxxxx"];
-    array = [NSArray arrayWithContentsOfURL:[NSURL URLWithString:@"myzaker.com"]];
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict1 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict2 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict3 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict4 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict5 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict6 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict7 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict8 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict9 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict10 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict11 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict12 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict13 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict14 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict15 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-    NSDictionary *dict16 = [NSDictionary dictionaryWithObject:@"davy" forKey:@"name"];
-}
-
 @end
