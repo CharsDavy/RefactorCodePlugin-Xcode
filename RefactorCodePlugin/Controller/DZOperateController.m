@@ -20,15 +20,16 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
  Parse:
  head:(?!\[)(.+)(?=\s+set)
  Test string:
+ [[[test.d findw] setSSSS:xxc] setXXXX:abce];
  [self setEnable:YES];
- [self setEXXXXXnable:NO];
- [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
- [self.url setUrl:@"/Users/chars/test.m"];
  [[test.a find]    setBB:partten];
  [[test.b finds] XXXsetBB:partten];
  [[[test.c findx] XXXsFFF] setXXXX:abc];
- [[[test.d findw] setSSSS] setXXXX:abce];
+ 
  [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
+ [self setEXXXXXnable:NO];
+ [self setValue:[NSString stringWithFormat:@"%@", @"ssssss"] forKey:@"ddd"];
+ [self.url setUrl:@"/Users/chars/test.m"];
  
  tail:(?<=set)[A-Z]\w+(?=:|\s*)
  Test string:
@@ -41,7 +42,7 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
  [[test.a find] setBB:partten];
  [[test.b finds] XXXsetBB:partten];
  [[[test.c findx] XXXsFFF] setXXXX:abc];
- [[[test.d findw] setSSSS] setXXXX:abce];
+ [[[test.d findw] setSSSS:abx] setXXXX:abce];
  [[[test findws] XXsetSSSS] XXsetXXXX:abcd];
  [self setString:[NSString stringWithFormat:@"%@", @"ssssss"]]; 
  
@@ -128,29 +129,6 @@ static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w
 {
     [[NSUserDefaults standardUserDefaults] setObject:sender.selectedItem.representedObject forKey:DZDefaultsKeyMethodStyle];
     [DZOperateCharacter zeroCurrentIdx];
-}
-
-#pragma mark All Button Action
-
-- (IBAction)allButtonAction:(NSButton *)sender
-{
-    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:DZDefaultsKeyMethodStyle];
-    NSString *pattern = [[NSString alloc] init];
-    
-    if ([selectedStyle isEqualToString:@"Setter"]) {
-        pattern = DZSetterMethodFindRegexPattern;
-    }else if ([selectedStyle isEqualToString:@"NSArray"]) {
-        pattern = DZNSArrayMethodFindRegexPattern;
-    }else if ([selectedStyle isEqualToString:@"NSDictionary"]) {
-        pattern = DZNSDictionaryMethodFindRegexPattern;
-    }else {
-        DZLog(@"allButtonAction Error!");
-    }
-    
-    if ([_delegate respondsToSelector:@selector(findAllSpecifyStringWithPattern:)]) {
-        [_delegate findAllSpecifyStringWithPattern:pattern];
-    }
-    DZLog(@"pattern : %@", pattern);
 }
 
 #pragma mark Apply Button Action

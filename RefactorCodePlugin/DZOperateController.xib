@@ -15,32 +15,22 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Refactor Method Style" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="180" y="240" width="517" height="322"/>
+            <rect key="contentRect" x="180" y="240" width="517" height="275"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="517" height="322"/>
+                <rect key="frame" x="0.0" y="0.0" width="517" height="275"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97u-oJ-ce2">
-                        <rect key="frame" x="38" y="69" width="150" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Select Method Style : " id="9UF-gZ-Csb">
+                        <rect key="frame" x="38" y="22" width="98" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Select Style : " id="9UF-gZ-Csb">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2dI-rs-2Rk">
-                        <rect key="frame" x="390" y="60" width="93" height="32"/>
-                        <buttonCell key="cell" type="push" title="All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ekl-rK-1ig">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="allButtonAction:" target="-2" id="63m-Pm-fS1"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWY-gz-04b">
-                        <rect key="frame" x="390" y="25" width="93" height="32"/>
+                        <rect key="frame" x="390" y="13" width="93" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgu-Rq-LJ4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -50,8 +40,8 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ibm-6S-IEp">
-                        <rect key="frame" x="293" y="60" width="93" height="32"/>
-                        <buttonCell key="cell" type="push" title="Find" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q9l-Ec-p0Z">
+                        <rect key="frame" x="293" y="13" width="93" height="32"/>
+                        <buttonCell key="cell" type="push" title="Find/Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q9l-Ec-p0Z">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -60,7 +50,7 @@
                         </connections>
                     </button>
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwq-ka-6pb">
-                        <rect key="frame" x="40" y="102" width="437" height="195"/>
+                        <rect key="frame" x="40" y="55" width="437" height="195"/>
                         <clipView key="contentView" ambiguous="YES" id="eTE-Ns-Uvr">
                             <rect key="frame" x="1" y="1" width="435" height="193"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +78,7 @@
                         </scroller>
                     </scrollView>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6o-Dy-0uD">
-                        <rect key="frame" x="38" y="29" width="150" height="26"/>
+                        <rect key="frame" x="129" y="17" width="142" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Setter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wR9-jv-TsK" id="bJi-3q-cON">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -109,7 +99,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="455.5" y="383"/>
+            <point key="canvasLocation" x="455.5" y="359.5"/>
         </window>
     </objects>
 </document>
