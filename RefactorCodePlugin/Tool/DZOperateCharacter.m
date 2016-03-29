@@ -65,6 +65,7 @@ NSUInteger currentIdx = 0;
     }
     
     NSArray *verify = nil;
+    NSArray *setterCount = nil;
     NSTextCheckingResult *result = nil;
     do {
         result = [regular firstMatchInString:content options:0 range:NSMakeRange(currentIdx, content.length - currentIdx)];
@@ -77,10 +78,11 @@ NSUInteger currentIdx = 0;
         
         currentIdx = result.range.location + result.range.length;
         verify = [self findAllSpecityStringWithContent:[content substringWithRange:result.range] pattern:@"(?<=for)(.+)(\\:)"];
+        setterCount = [self findAllSpecityStringWithContent:[content substringWithRange:result.range] pattern:@"set"];
         
         ret.resultString = [content substringWithRange:result.range];
         ret.resultRange = result.range;
-    } while (verify.count > 0);
+    } while (verify.count > 0 || setterCount.count > 1);
     
     return ret;
 }
