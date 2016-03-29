@@ -153,6 +153,7 @@ NSUInteger currentIdx = 0;
     NSArray *bracket = nil; //中括号
     NSArray *parenthesis = nil; //小括号
     NSArray *setter = [self findAllSpecityStringWithContent:src pattern:@"\\s*set"];
+    NSString *header = nil;
     
     brace = [self findAllSpecityStringWithContent:src pattern:@"\\{"];
     bracket = [self findAllSpecityStringWithContent:src pattern:@"\\["];
@@ -162,32 +163,37 @@ NSUInteger currentIdx = 0;
 
         NSString *currentSrc = [src substringWithRange:NSMakeRange(0, result.resultRange.location)];
         if (bracket.count) {
-            NSArray *tmp = [self findAllSpecityStringWithContent:currentSrc pattern:@"\\]"];
-            NSUInteger i = 0;
-            if (tmp.count) {
-                i = bracket.count - tmp.count;
-            }
-            DZResults *currentResult = (DZResults *)bracket[i];
-            DZResults *currentFindResult = (DZResults *)[tmp lastObject];
-            NSUInteger start = currentResult.resultRange.location + currentResult.resultRange.length;
-            NSUInteger length = currentSrc.length - start;
-            if (currentFindResult) {
-                start = currentResult.resultRange.location;
-                length = currentFindResult.resultRange.location + currentFindResult.resultRange.length - start;
-            }
-            NSString *header = [currentSrc substringWithRange:NSMakeRange(start, length)];
-            [arrayM addObject:header];
+            header = [self drawStringWithPattern:@"\\]" array:bracket src:currentSrc];
         } else if (parenthesis.count) {
-            
+            header = [self drawStringWithPattern:@"\\)" array:parenthesis src:currentSrc];
         } else if (brace.count) {
-            
+            header = [self drawStringWithPattern:@"\\}" array:brace src:currentSrc];
         } else {
             DZLog(@"Bracket Operate Error!");
         }
-
+        [arrayM addObject:header];
     }
 
     return arrayM;
+}
+
++ (NSString *)drawStringWithPattern:(NSString *)pattern array:(NSArray *)array src:(NSString *)src
+{
+    NSArray *tmp = [self findAllSpecityStringWithContent:src pattern:pattern];
+    NSUInteger i = 0;
+    if (tmp.count) {
+        i = array.count - tmp.count;
+    }
+    DZResults *currentResult = (DZResults *)array[i];
+    DZResults *currentFindResult = (DZResults *)[tmp lastObject];
+    NSUInteger start = currentResult.resultRange.location + currentResult.resultRange.length;
+    NSUInteger length = src.length - start;
+    if (currentFindResult) {
+        start = currentResult.resultRange.location;
+        length = currentFindResult.resultRange.location + currentFindResult.resultRange.length - start;
+    }
+    NSString *header = [src substringWithRange:NSMakeRange(start, length)];
+    return header;
 }
 
 @end
