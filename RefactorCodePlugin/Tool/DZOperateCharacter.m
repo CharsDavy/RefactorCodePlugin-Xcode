@@ -109,7 +109,7 @@ NSUInteger currentIdx = 0;
 + (NSString *)createSetterMethodValueReplaceStringWithSpecityString:(NSString *)specity
 {
     NSError *error = nil;
-    NSString *valuePattern =  [[NSString alloc] initWithFormat:@"%@", @"(?<=set)(\\w+)(?=:)"];
+    NSString *valuePattern =  [[NSString alloc] initWithFormat:@"%@", @"(?<=set)[A-Z]\\w+(?=:|\\s*)"];
     
     //According to the regular expression，set up Objective-C rules
     NSRegularExpression *valueRegular = [[NSRegularExpression alloc] initWithPattern:valuePattern options:NSRegularExpressionAllowCommentsAndWhitespace error:&error];

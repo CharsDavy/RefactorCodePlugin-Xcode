@@ -86,6 +86,15 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     self.selectedRange = NSMakeRange(0, 0);
     [self highlightSelectedStrings];
     [DZOperateCharacter zeroCurrentIdx];
+    
+    //Get the file path
+    NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
+    if (originURL != nil && [originURL absoluteString].length >= 7 ) {
+        if (![self.filePath isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
+            self.filePath = [originURL.absoluteString substringFromIndex:7];
+            DZLog(@"filePath is : %@", self.filePath);
+        }
+    }
 }
 
 - (void) windowsWillClose:(NSNotification *)notify
