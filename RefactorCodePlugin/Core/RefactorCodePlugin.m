@@ -13,7 +13,7 @@
 #import "DZResults.h"
 
 static const char hilightStateKey;
-NSString *DZCurrentFilePathChangeNotification = @"transition from one file to another";
+//NSString *DZCurrentFilePathChangeNotification = @"transition from one file to another";
 
 @interface RefactorCodePlugin()<DZOperateDelegate>
 
@@ -26,6 +26,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 @property (nonatomic, readonly) NSString *string;
 @property (nonatomic, assign) NSRange selectedRange;
 @property (nonatomic, copy) DZResults *currentReplaceResult;
+@property (nonatomic, copy) NSString *currentSrc;
 
 @property (nonatomic, copy) NSString *filePath;
 @property (nonatomic, assign) BOOL flag;
@@ -70,7 +71,7 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
     // addObserver
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentFileChange:) name:DZCurrentFilePathChangeNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentFileChange:) name:DZCurrentFilePathChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionDidChange:) name:NSTextViewDidChangeSelectionNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowsWillClose:) name:NSWindowWillCloseNotification object:nil];
     // Create menu items, initialize UI, etc.
@@ -81,21 +82,21 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
     
 }
 
-- (void) currentFileChange:(NSNotification *)notify
-{
-    self.selectedRange = NSMakeRange(0, 0);
-    [self highlightSelectedStrings];
-    [DZOperateCharacter zeroCurrentIdx];
-    
-    //Get the file path
-    NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
-    if (originURL != nil && [originURL absoluteString].length >= 7 ) {
-        if (![self.filePath isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
-            self.filePath = [originURL.absoluteString substringFromIndex:7];
-            DZLog(@"filePath is : %@", self.filePath);
-        }
-    }
-}
+//- (void) currentFileChange:(NSNotification *)notify
+//{
+//    self.selectedRange = NSMakeRange(0, 0);
+//    [self highlightSelectedStrings];
+//    [DZOperateCharacter zeroCurrentIdx];
+//    
+//    //Get the file path
+//    NSURL *originURL = [[notify.object valueForKey:@"next"] valueForKey:@"documentURL"];
+//    if (originURL != nil && [originURL absoluteString].length >= 7 ) {
+//        if (![self.filePath isEqualToString:[originURL.absoluteString substringFromIndex:7]]) {
+//            self.filePath = [originURL.absoluteString substringFromIndex:7];
+//            DZLog(@"filePath is : %@", self.filePath);
+//        }
+//    }
+//}
 
 - (void) windowsWillClose:(NSNotification *)notify
 {
@@ -365,6 +366,14 @@ NSString *DZCurrentFilePathChangeNotification = @"transition from one file to an
 
 - (void)findSpecifyStringWithPattern:(NSString *)pattern
 {
+    if (_currentSrc == nil || _currentSrc != self.string) {
+        _currentSrc = self.string;
+        
+        self.selectedRange = NSMakeRange(0, 0);
+        [self highlightSelectedStrings];
+        [DZOperateCharacter zeroCurrentIdx];
+    }
+    
     DZResults *find = [DZOperateCharacter findSpecityStringWithContent:self.string pattern:pattern];
     if (find) {
         _currentReplaceResult = [DZOperateCharacter createSetterMethodReplaceStringWithSpecityString:find.resultString];
