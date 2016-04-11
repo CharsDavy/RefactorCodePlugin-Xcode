@@ -171,7 +171,7 @@ static const char hilightStateKey;
 
 #pragma mark Show Operate Window
 
-- (void)refactorMethodStyleMenuAction
+- (void)reindentMethodStyleMenuAction
 {
     [self.operateController showWindow:nil];
     
@@ -179,7 +179,7 @@ static const char hilightStateKey;
     
     if (!url) {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Refactor Method Style could not be shown because the plugin is corrupted.";
+        alert.messageText = @"Reindent Method Style could not be shown because the plugin is corrupted.";
         alert.informativeText = @"If you build the plugin from sources using Xcode, make sure to perform “Clean Build Folder“ in Xcode and then build the plugin again.\n\nIf you installed the plugin via Alctraz, there is a pending issue causing some files to be missing in the plugin. Prefer to install it via the plugin webpage.";
         [alert addButtonWithTitle:@"Download Latest"];
         [alert addButtonWithTitle:@"Cancel"];

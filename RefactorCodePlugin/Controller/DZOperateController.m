@@ -9,9 +9,9 @@
 #import "DZOperateController.h"
 #import "DZOperateCharacter.h"
 
-static NSString *DZSetterMethodFindRegexPattern = @"(\\[)(.+)(?<=\\sset)[A-Z]\\w+(.+)(\\];)";
-static NSString *DZNSArrayMethodFindRegexPattern = @"(.+)(?<=array)\\w+(.+)";
-static NSString *DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w+(.+)";
+static NSString * const DZSetterMethodFindRegexPattern = @"(\\[)(.+)(?<=\\sset)[A-Z]\\w+(.+)(\\];)";
+static NSString * const DZNSArrayMethodFindRegexPattern = @"(.+)(?<=array)\\w+(.+)";
+static NSString * const DZNSDictionaryMethodFindRegexPattern = @"(.+)(?<=dictionary)\\w+(.+)";
 
 /**
  *  Ruby Regular
