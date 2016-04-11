@@ -7,7 +7,9 @@ Refactor code style, such as setter method.
 Build the `Refactor Code` target in the Xcode project and the plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. Relaunch Xcode and clicked `Edit` menu you can seeing `Reindent` submenu.
 ## Alcatraz
 
-Install [Alcatraz](http://alcatraz.io/), restart Xcode and press ⇧⌘9. You can find `Refactor Code` in the list and click the icon on the left to install.
+Install [Alcatraz](http://alcatraz.io/), restart Xcode and press ⇧⌘9. You can find `Refactor Code` in the list and click the icon on the left to install.</br>
+
+<img alt="one" src="https://raw.github.com/charsdavy/RefactorCodePlugin-Xcode/master/screenshots/Alcatraz-install.png" width= "300">
 
 # Screenshots
 <img alt="one" src="https://raw.github.com/charsdavy/RefactorCodePlugin-Xcode/master/screenshots/menu.png" width= "300">
