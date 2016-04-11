@@ -156,16 +156,16 @@ static const char hilightStateKey;
     if (editMenuItem) {
         [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
         
-        NSMenu *refactorCodeMenu = [[NSMenu alloc] initWithTitle:@"Refactor Code"];
+        NSMenu *reindentMenu = [[NSMenu alloc] initWithTitle:@"Reindent"];
         
         NSMenuItem *menuItem;
         menuItem = [[NSMenuItem alloc] initWithTitle:@"Refactor Method Style" action:@selector(refactorMethodStyleMenuAction) keyEquivalent:@""];
         [menuItem setTarget:self];
-        [refactorCodeMenu addItem:menuItem];
+        [reindentMenu addItem:menuItem];
         
-        NSMenuItem *refactorCodeMenuItem = [[NSMenuItem alloc] initWithTitle:@"Refactor Code" action:nil keyEquivalent:@""];
-        [refactorCodeMenuItem setSubmenu:refactorCodeMenu];
-        [[editMenuItem submenu] addItem:refactorCodeMenuItem];
+        NSMenuItem *reindentMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reindent" action:nil keyEquivalent:@""];
+        [reindentMenuItem setSubmenu:reindentMenu];
+        [[editMenuItem submenu] addItem:reindentMenuItem];
     }
 }
 
